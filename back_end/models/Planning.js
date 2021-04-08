@@ -8,6 +8,6 @@ const planningSchema = new mongoose.Schema({
         ref: 'User'
     }
 })
-const PlanningModel = mongoose.model('Planning', planningSchema);
+const PlanningModel = mongoose.model('Plannings', planningSchema);
 
 module.exports = PlanningModel;
