@@ -14,12 +14,10 @@ async function createPlanning() {
         {
             date: '03/01/2022',
             activité: "Fournir et partager le petit déjeuner",
-            bénévole: "606d7f57e27fd10ae05a22de",
         },
         {
             date: '04/01/2022',
             activité: "Préparer et partager le repas",
-            bénévole: "606d7f57e27fd10ae05a22de",
         },
         {
             date: '05/01/2022',
@@ -34,7 +32,6 @@ async function createPlanning() {
         {
             date: '07/01/2022',
             activité: "Récupérer le repas et le partager",
-            bénévole: "606d7f57e27fd10ae05a22de",
         },
         {
             date: '08/01/2022',
@@ -44,7 +41,6 @@ async function createPlanning() {
         {
             date: '09/01/2022',
             activité: "Fournir et partager le petit déjeuner",
-            bénévole: "606d7f57e27fd10ae05a22de",
         }
     )
 }

@@ -1,5 +1,10 @@
 import React from 'react';
-import { Component, useState, useEffect } from 'react';
+
+
+
+
+import  { useState } from 'react';
+import Select from 'react-select'
 
 function Agenda() {
 
