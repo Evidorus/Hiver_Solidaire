@@ -1,40 +1,45 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom"
-import { Menu } from "antd";
-import 'antd/dist/antd.css'
-import {
-  MailOutlined,
-} from "@ant-design/icons";
+import React from 'react'
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import Agenda from '../views/Agenda'
+import Home from '../views/Home';
+import Login from '../views/Login';
+import Signup from '../views/Signup';
 
-const { SubMenu } = Menu;
 
-const rootSubmenuKeys = "sub1";
+function Navbar() {
 
-export default function Navbar() {
-  const [openKeys, setOpenKeys] = useState(["sub1"]);
+    return (
+        <BrowserRouter>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                    <Link to="/" classNameName="navbar-brand">HIVER SOLIDAIRE</Link>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <Link to="/agenda" className="nav-link active" >Agenda</Link>
+                            </li>
+                            <li className="nav-item">
+                            <Link to="/signup" className="nav-link active" >Signup</Link>
+                            </li>
+                            <li className="nav-item">
+                            <Link to="/login" className="nav-link active" >Login</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/agenda" component={Agenda} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/login" component={Login} />
+            </Switch>
+        </BrowserRouter>
 
-  const onOpenChange = (keys) => {
-    const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
-    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      setOpenKeys(keys);
-    } else {
-      setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-    }
-  };
-
-  return (
-    <Menu
-      mode="inline"
-      openKeys={openKeys}
-      onOpenChange={onOpenChange}
-      style={{ width: 256 }}
-    >
-      <SubMenu key="sub1" icon={<MailOutlined />} title="Hiver Solidaire">
-        <Menu.Item key="1"><Link to='/signup'>Signup</Link></Menu.Item>
-        <Menu.Item key="2"><Link to='/login'>Login</Link></Menu.Item>
-        <Menu.Item key="3"><Link to='/agenda'>Agenda</Link></Menu.Item>
-        <Menu.Item key="4">Option 4</Menu.Item>
-      </SubMenu>
-    </Menu>
-  );
+    )
 }
+
+export default Navbar;
