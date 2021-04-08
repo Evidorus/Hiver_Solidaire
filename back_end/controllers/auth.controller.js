@@ -1,4 +1,3 @@
-const express = require("express")
 const {generateToken} = require('../utils/auth.utils')
 const UserModel = require('../models/User')
 
