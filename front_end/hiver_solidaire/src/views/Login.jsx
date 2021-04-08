@@ -28,7 +28,7 @@ export default function Login() {
       if (response.ok) {
         const tokenObj = await response.json();
         localStorage.setItem('token', tokenObj.token);
-        history.push('/signup')
+        history.push('/agenda')
       }
     } catch (err) {
       console.error(err)
