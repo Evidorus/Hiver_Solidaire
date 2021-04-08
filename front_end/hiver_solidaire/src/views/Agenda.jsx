@@ -33,6 +33,7 @@ function Agenda() {
 
     return (
         <>
+            
             <table class="table table2">
                 <thead>
                     <tr>
@@ -53,10 +54,7 @@ function Agenda() {
                             <Select
                                 options={activities}
                                 onChange={choixHandle} />
-                            <button
-                                className="btn btn-outline-secondary"
-                                type="button"
-                            >Envoyer</button>
+                            
                         </td>
                         <td>
                             <div class="input-group">
