@@ -8,6 +8,7 @@ module.exports.signup = async (req, res, next) => {
         const newUser = await UserModel.create(body)
         const token = generateToken(newUser.email)
         res.send({token})
+        console.log(token)
     }catch(error){
         res.status(400).send(error)
         console.log(error)
@@ -27,6 +28,7 @@ module.exports.login = async (req, res, next) => {
             return res.status(401).json("Mot de Passe incorrect")
         }
         const token = generateToken(user.email);
+        console.log(token)
         return res.json({
             token
         })
