@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import Infos from '../views/Infos'
+
 
 function Agenda() {
     const [planning, setPlanning] = useState([]);
@@ -23,9 +26,10 @@ function Agenda() {
         .bénévole
         if(benevole ){
             return(<>
+                <Link to="/infos">
                 <p>{benevole.nom}</p>
-                <p>{benevole.prénom}</p>
-                
+                <p>Link{benevole.prénom}</p>
+                </Link>
                 </>
             )
         }else{
@@ -36,7 +40,7 @@ function Agenda() {
     }
     return (
        
-       <>
+       <BrowserRouter>
 
        {planning.length === 0 ? <p>loading</p> : (
            <>
@@ -123,8 +127,10 @@ function Agenda() {
             </table>
            </>
        ) }
-            
-        </>
+        <Switch>
+        <Route  path="/infos" component={Infos} />
+        </Switch>
+        </BrowserRouter>
     )
 }
 export default Agenda;
