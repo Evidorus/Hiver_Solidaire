@@ -81,3 +81,15 @@ app.get('/profil',checkAuth, async (req, res) => {
     }
 })
 
+app.get('/liste',checkAuth, async (req, res) => {
+    try{
+        const tokenUser = req.token
+        const user = await PlanningModel.find({
+            bénévole: tokenUser._id
+        })
+        res.json(user)
+    }catch(error){
+        console.log(error)
+    }
+})
+
