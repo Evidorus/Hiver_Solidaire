@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
     })
     
     if (user) {
-        req.toto = user;
+        req.token = user;
         next()
     } else {
         res.status(400).send(err)

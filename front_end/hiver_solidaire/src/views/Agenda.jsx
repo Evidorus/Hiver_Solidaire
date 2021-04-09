@@ -40,7 +40,7 @@ function Agenda() {
     }
     return (
        
-       <BrowserRouter>
+       <>
 
        {planning.length === 0 ? <p>loading</p> : (
            <>
@@ -127,10 +127,8 @@ function Agenda() {
             </table>
            </>
        ) }
-        <Switch>
-        <Route  path="/infos" component={Infos} />
-        </Switch>
-        </BrowserRouter>
+        
+        </>
     )
 }
 export default Agenda;
