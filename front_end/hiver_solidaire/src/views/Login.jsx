@@ -25,7 +25,7 @@ export default function Login() {
         },
         body: JSON.stringify(data)
       });
-      if (response.ok) {
+      if (response) {
         const tokenObj = await response.json();
         localStorage.setItem('token', tokenObj.token);
         history.push('/agenda')
