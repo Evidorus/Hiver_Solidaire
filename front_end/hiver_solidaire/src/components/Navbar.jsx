@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
-import Agenda from '../Views/Agenda'
-import Home from '../Views/Home';
-import Login from '../Views/Login';
-import Signup from '../Views/Signup';
+import Agenda from '../views/Agenda'
+import Home from '../views/Home';
+import Login from '../views/Login';
+import Profil from '../views/Profil';
+import Signup from '../views/Signup';
 
 
 function Navbar() {
@@ -27,6 +28,9 @@ function Navbar() {
                             <li className="nav-item">
                             <Link to="/login" className="nav-link active" >Login</Link>
                             </li>
+                            <li className="nav-item">
+                            <Link to="/profile" className="nav-link active" >Profile</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -36,6 +40,7 @@ function Navbar() {
                 <Route path="/agenda" component={Agenda} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
+                <Route path="/profile" component={Profil} />
             </Switch>
         </BrowserRouter>
 
