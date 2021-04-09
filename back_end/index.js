@@ -23,7 +23,7 @@ app.listen(port, () => {
     console.log('Serveur lancé')
 })
 
-app.get('/planning', checkAuth, async (req, res) => {
+app.get('/planning',  async (req, res) => {
     try {
         const planning = await PlanningModel.find({})
         res.json(planning)
