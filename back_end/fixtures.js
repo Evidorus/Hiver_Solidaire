@@ -41,12 +41,12 @@ async function createPlanning() {
         {
             date: '2022/01/05',
             activité: "Préparer le repas chez soi et le tenir à disposition",
-            bénévole: Users[0].nom,
+            bénévole: Users[0]._id,
         },
         {
             date: '2022/01/06',
             activité: "Récupérer le repas et le partager",
-            bénévole: Users[0].nom,
+            bénévole: Users[0]._id,
         },
         {
             date: '2022/01/07',
@@ -55,7 +55,7 @@ async function createPlanning() {
         {
             date: '2022/01/08',
             activité: "Passer la nuit",
-            bénévole: Users[1].nom,
+            bénévole: Users[1]._id,
         },
         {
             date: '2022/01/09',

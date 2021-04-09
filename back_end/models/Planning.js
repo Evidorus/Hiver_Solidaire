@@ -4,7 +4,7 @@ const planningSchema = new mongoose.Schema({
     date: Date,
     activité: String,
     bénévole: {
-        type: String,
+        type: mongoose.Types.ObjectId,
         ref: 'Users'
     }
 })

@@ -25,7 +25,7 @@ app.listen(port, () => {
 
 app.get('/planning', async (req, res) => {
     try {
-        const planning = await PlanningModel.find({}).populate('Users').lean().exec()
+        const planning = await PlanningModel.find({}).populate('bénévole').lean().exec()
         res.json(planning)
     } catch (error) {
         console.log(error)
