@@ -5,8 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const PlanningModel = require('./models/Planning');
-const authRoutes = require('./routes/auth');
 const UserModel = require('./models/User');
+const authRoutes = require('./routes/auth');
 const checkAuth = require('./middlewares/auth.middlewares')
 
 app.use(bodyParser.json());
@@ -23,9 +23,9 @@ app.listen(port, () => {
     console.log('Serveur lancé')
 })
 
-app.get('/planning', checkAuth, async (req, res) => {
+app.get('/planning', async (req, res) => {
     try {
-        const planning = await PlanningModel.find({})
+        const planning = await PlanningModel.find({}).populate('Users').lean().exec()
         res.json(planning)
     } catch (error) {
         console.log(error)
@@ -38,7 +38,7 @@ app.post('/addplanning', checkAuth, async (req, res) => {
         const user = req.toto
         console.log(user)
         const body = req.body
-        const planning = await PlanningModel.find({
+        const planning = await PlanningModel.findOne({
             date: body.date,
             activité: body.activité
         })
@@ -48,7 +48,7 @@ app.post('/addplanning', checkAuth, async (req, res) => {
             const newPlanning = await PlanningModel.create({
                 date: body.date,
                 activité: body.activité,
-                bénévole: user._id
+                bénévole: user.nom
             })
             console.log(newPlanning)
             res.status(200).json({newPlanning}).send('Vous vous etes bien inscrit')
