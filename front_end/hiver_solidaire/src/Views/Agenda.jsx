@@ -1,10 +1,4 @@
-import React from 'react';
-
-
-
-
-import  { useState } from 'react';
-import Select from 'react-select'
+import React, {useEffect, useState} from 'react';
 
 function Agenda() {
 
@@ -12,13 +6,13 @@ function Agenda() {
     const [planning, setPlanning] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8000/planning")
+        return fetch("http://localhost:8000/planning")
             .then((response) => { return response.json() })
             .then((response) => {
                 console.log(response)
                 setPlanning(response)
             })
-            , []})
+            }, [])
 
 
 return (
