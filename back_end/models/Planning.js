@@ -5,7 +5,7 @@ const planningSchema = new mongoose.Schema({
     activité: String,
     bénévole: {
         type: mongoose.Types.ObjectId,
-        ref: 'User'
+        ref: 'Users'
     }
 })
 const PlanningModel = mongoose.model('Plannings', planningSchema);

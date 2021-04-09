@@ -1,6 +1,4 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import Select from 'react-select'
+import React, {useEffect, useState} from 'react';
 
 function Agenda() {
     const [planning, setPlanning] = useState([]);
@@ -11,7 +9,7 @@ function Agenda() {
                 console.log(response)
                 setPlanning(response)
             })
-    },[])
+            }, [])
 
     const ckeckPlanning = ( date,activité)=>{
         const benevole = planning.find((element)=>{
