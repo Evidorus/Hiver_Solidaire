@@ -15,27 +15,25 @@ function Agenda() {
         const benevole = planning.find((element)=>{
             console.log(element)
             return(
-                element.date === date && element.activité === activité 
+                element.date === date && element.activité === activité
 
             )
         })
-        .bénévole;
-
+        
+        .bénévole
         if(benevole ){
-            return(
-                <p>{benevole}</p>
+            return(<>
+                <p>{benevole.nom}</p>
+                <p>{benevole.prénom}</p>
+                
+                </>
             )
         }else{
             return(
                 <button>S'inscrire</button>
-            )
-            
-        }
-        
-        
+            )       
+        }      
     }
-
-
     return (
        
        <>
@@ -69,56 +67,57 @@ function Agenda() {
                         <th scope="row">Fournir et partager le petit déjeuner entre 7h à 8h</th>
                         <td>
 
-                           {ckeckPlanning("2022-02-28T23:00:00.000Z","Fournir et partager le petit déjeuner")}
+                           {ckeckPlanning("2022-01-02T23:00:00.000Z","Fournir et partager le petit déjeuner")}
                         </td>
                         <td>
-                       {ckeckPlanning("2022-03-31T22:00:00.000Z","Préparer et partager le repas")}
+                        {ckeckPlanning("2022-01-02T23:00:00.000Z","Fournir et partager le petit déjeuner")}
                         </td>
-                        <td> {ckeckPlanning("2022-04-30T22:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")} </td>
-                        <td> </td>
-                        <td>  </td>
-                        <td> </td>
-                        <td> </td>
+                        <td> {ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")} </td>
+                        <td> {ckeckPlanning("2022-01-02T23:00:00.000Z","Fournir et partager le petit déjeuner")} </td>
+                        <td>   {ckeckPlanning("2022-01-02T23:00:00.000Z","Fournir et partager le petit déjeuner")}</td>
+                        <td>{ckeckPlanning("2022-01-08T23:00:00.000Z","Fournir et partager le petit déjeuner")} </td>
+                        <td>  {ckeckPlanning("2022-01-02T23:00:00.000Z","Fournir et partager le petit déjeuner")}</td>
                     </tr>
                     <tr>
                         <th scope="row">Préparer et partager le repas à 12 h</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        <td>{ckeckPlanning("2022-01-03T23:00:00.000Z","Préparer et partager le repas")}</td>
+                        
                     </tr>
                     <tr>
                         <th scope="row">Préparer le repas chez soi et le tenir à disposition</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
+                        <td>{ckeckPlanning("2022-01-04T23:00:00.000Z","Préparer le repas chez soi et le tenir à disposition")}</td>
                     </tr>
                     <tr>
                         <th scope="row">Récupérer le repas et le partager</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{ckeckPlanning("2022-01-06T23:00:00.000Z","Récupérer le repas et le partager")}</td>
+                        <td>{ckeckPlanning("2022-01-06T23:00:00.000Z","Récupérer le repas et le partager")}</td>
+                        <td>{ckeckPlanning("2022-01-06T23:00:00.000Z","Récupérer le repas et le partager")}</td>
+                        <td>{ckeckPlanning("2022-01-05T23:00:00.000Z","Récupérer le repas et le partager")} </td>
+                        <td>{ckeckPlanning("2022-01-06T23:00:00.000Z","Récupérer le repas et le partager")}</td>
+                        <td>{ckeckPlanning("2022-01-06T23:00:00.000Z","Récupérer le repas et le partager")}</td>
+                        <td>{ckeckPlanning("2022-01-06T23:00:00.000Z","Récupérer le repas et le partager")}</td>
                     </tr>
                     <tr>
                         <th scope="row">Passer la nuit</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
+                        <td>{ckeckPlanning("2022-01-07T23:00:00.000Z","Passer la nuit")}</td>
                     </tr>
                 </tbody>
             </table>
