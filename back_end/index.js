@@ -23,11 +23,7 @@ app.listen(port, () => {
     console.log('Serveur lancé')
 })
 
-<<<<<<< HEAD
 app.get('/planning',  async (req, res) => {
-=======
-app.get('/planning', async (req, res) => {
->>>>>>> 1352392a159755c5c398ea0d53a4277d50ff82a3
     try {
         const planning = await PlanningModel.find({}).populate('bénévole').lean().exec()
         res.json(planning)

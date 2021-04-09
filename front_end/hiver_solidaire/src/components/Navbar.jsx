@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
-import Agenda from '../Views/Agenda'
-import Home from '../Views/Home';
-import Login from '../Views/Login';
-import Profil from '../Views/Profil';
-import Signup from '../Views/Signup';
+import Agenda from '../views/Agenda'
+import Home from '../views/Home';
+import Login from '../views/Login';
+import Profil from '../views/Profil';
+import Signup from '../views/Signup';
 
 
 function Navbar() {
