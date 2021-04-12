@@ -1,0 +1,35 @@
+/*.hombody{
+    background-color: black;
+    height: 100vh;
+    background-image: url("../../public/imgHS/logo_hiver_solidaire.jpg");
+              {"
+            //<div class="ytp-cued-thumbnail-overlay-image" style="background-image: url(&quot;https://i.ytimg.com/vi/2Bmmtc4YwEA/sddefault.jpg&quot;);"></div>
+            //<video tabindex="-1" class="video-stream html5-main-video" controlslist="nodownload" style="width: 287px; height: 287px; left: 112px; top: 0px;" src="blob:https://www.youtube-nocookie.com/6305521b-0d8a-474a-88d6-2c50e5525de0"></video> 
+            "}
+    
+}*/
+
+.icon-container{
+    
+    width: 8vw;
+    height: 8vw;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 85%;
+    transform: translateY(-50%);
+    
+   
+}
+/* .icon-container  .icon {
+      display: table-cell; 
+      vertical-align: middle;
+  
+      font-size: 21px;
+      color: white;
+    } */
+
+    
+
+  
