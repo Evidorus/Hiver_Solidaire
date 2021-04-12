@@ -14,16 +14,16 @@ app.use(cors());
 app.use('/auth', authRoutes)
 
 mongoose.connect('mongodb://localhost:27017/hiversolidaire',
-{ useNewUrlParser: true, useUnifiedTopology: true },
-()=>{
-    console.log("MongoDB connecté")
-});
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    () => {
+        console.log("MongoDB connecté")
+    });
 
 app.listen(port, () => {
     console.log('Serveur lancé')
 })
 
-app.get('/planning',  async (req, res) => {
+app.get('/planning', async (req, res) => {
     try {
         const planning = await PlanningModel.find({}).populate('bénévole').lean().exec()
         res.json(planning)
@@ -38,20 +38,19 @@ app.post('/addplanning', checkAuth, async (req, res) => {
         const user = req.token
         console.log(user)
         const body = req.body
-        const planning = await PlanningModel.findOne({
-            date: body.date,
-            activité: body.activité
-        })
-        if (planning) {
+        const planning = await PlanningModel.findById(req.body.id)
+        if (planning.bénévole) {
             res.status(400).send('cette place est deja prise')
         } else {
-            const newPlanning = await PlanningModel.create({
-                date: body.date,
-                activité: body.activité,
-                bénévole: user.nom
-            })
-            console.log(newPlanning)
-            res.status(200).json({newPlanning}).send('Vous vous etes bien inscrit')
+            await PlanningModel.updateOne(
+                {
+                    _id: body.id
+                },
+                {
+                    bénévole: user._id
+                })
+            res.status(200).send('Vous vous etes bien inscrit')
+
         }
     } catch (error) {
         console.log(error)
@@ -59,10 +58,36 @@ app.post('/addplanning', checkAuth, async (req, res) => {
 })
 
 app.get('/users', async (req, res) => {
-    try{
+    try {
         const users = await UserModel.find({})
         res.json(users)
-    }catch(error){
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.get('/profil', checkAuth, async (req, res) => {
+    try {
+        const tokenUser = req.token
+        console.log(tokenUser)
+        const user = await UserModel.findOne({
+            _id: tokenUser._id
+        })
+        console.log(user)
+        res.json(user)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.get('/liste', checkAuth, async (req, res) => {
+    try {
+        const tokenUser = req.token
+        const user = await PlanningModel.find({
+            bénévole: tokenUser._id
+        })
+        res.json(user)
+    } catch (error) {
         console.log(error)
     }
 })
