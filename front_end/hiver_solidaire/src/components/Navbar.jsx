@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import Agenda from '../views/Agenda'
 import Home from '../views/Home';
+import Liste from '../views/Liste';
 import Login from '../views/Login';
 import Profil from '../views/Profil';
 import Signup from '../views/Signup';
@@ -31,6 +32,9 @@ function Navbar() {
                             <li className="nav-item">
                             <Link to="/profile" className="nav-link active" >Profile</Link>
                             </li>
+                            <li className="nav-item">
+                            <Link to="/liste" className="nav-link active" > Recapitulatif </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -41,6 +45,7 @@ function Navbar() {
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profil} />
+                <Route path="/liste" component={Liste} />
             </Switch>
         </BrowserRouter>
 
