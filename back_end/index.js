@@ -36,7 +36,6 @@ app.get('/planning',  async (req, res) => {
 app.post('/addplanning', checkAuth, async (req, res) => {
     try {
         const user = req.token
-        console.log(user)
         const body = req.body
         const planning = await PlanningModel.findById(req.body.id)
         if (planning.bénévole) {
@@ -44,7 +43,7 @@ app.post('/addplanning', checkAuth, async (req, res) => {
         } else {
             await PlanningModel.updateOne(
             {
-                _id: body.id.activité
+                _id: body.id
             },
             {
                 bénévole: user._id
@@ -68,11 +67,9 @@ app.get('/users', async (req, res) => {
 app.get('/profil',checkAuth, async (req, res) => {
     try{
         const tokenUser = req.token
-        console.log(tokenUser)
         const user = await UserModel.findOne({
             _id: tokenUser._id
         })
-        console.log(user)
         res.json(user)
     }catch(error){
         console.log(error)
