@@ -5,33 +5,43 @@ function Agenda() {
 
     const [planning, setPlanning] = useState([]);
     const [activité, setActivity] = useState();
+    const [nom, setNom]=useState();
+    const [prénom,setPrénom]=useState();
 
 
     useEffect(() => {
-        return fetch("http://localhost:8000/planning")
-            .then((response) => { return response.json() })
-            .then((response) => {
-                console.log(response)
-                setPlanning(response)
-                setActivity(response)
-                
-            })
+        RemovePlanning()
             }, [])
 
+
+    const RemovePlanning=()=>{
+        return fetch("http://localhost:8000/planning")
+        .then((response) => { return response.json() })
+        .then((response) => {
+            console.log(response)
+            setPlanning(response)
+            setActivity(response)
+            setNom(response)
+            setPrénom(response)
+            
+        })
+    }
+
             const AddActivity = (id) => {
-                fetch(`http://localhost:8001/addplanning`,
+                fetch(`http://localhost:8000/addplanning`,
                    {
                        method: "POST",
                        headers: { 
-                           'Content-type': 'application/json' 
+                        'Authorization': "Bearer " + localStorage.getItem('token'),
+                        'Content-type': 'application/json' 
                         },
                        body: JSON.stringify({
                            id: id
-                        
                        })  
                    }).then((response) => { return response.json() })
                    .then((response) => {
                        console.log(response)
+                       return RemovePlanning(nom, prénom)
                         
                    })
            }
@@ -44,7 +54,6 @@ function Agenda() {
 
             )
         })
-
         .bénévole
         if(benevole ){
             return(<>
