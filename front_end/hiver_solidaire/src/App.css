@@ -1,6 +1,8 @@
 body {
     background-color: #B3E5FC;
-    border-radius: 10px
+    border-radius: 10px;
+    margin: 0%;
+    
 }
 
 .card {
