@@ -53,7 +53,6 @@ function Agenda() {
         const benevole = planning.find((element)=>{
             return(
                 element.date === date && element.activité === activité
-
             )
         })
         .bénévole
@@ -113,7 +112,6 @@ function Agenda() {
                     <tr>
                         <th scope="row">Fournir et partager le petit déjeuner entre 7h à 8h</th>
                         <td>
-
                            {ckeckPlanning("2022-01-02T23:00:00.000Z","Fournir et partager le petit déjeuner")}
                         </td>
                         <td>

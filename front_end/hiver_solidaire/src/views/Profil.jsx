@@ -3,7 +3,6 @@ import "../App.css";
 
 export default function Profil() {
   const [User, setUser] = useState([]);
-  console.log(User);
 
   useEffect(() => {
     fetch("http://localhost:8000/profil", {

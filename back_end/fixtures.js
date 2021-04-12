@@ -29,7 +29,7 @@ async function createPlanning() {
         }
     )
     await PlanningModel.deleteMany({}).exec();
-    const Planning = await PlanningModel.create(
+    await PlanningModel.create(
         {
             date: '2022/01/03',
             activité: "Fournir et partager le petit déjeuner",
@@ -191,27 +191,4 @@ async function createPlanning() {
     )
 }
 
-// async function createUser() {
-//     await UserModel.deleteMany({}).exec();
-//     await UserModel.create(
-//         {
-//             nom: "Olicard",
-//             prénom: "Fabien",
-//             age: 24,
-//             email: "fabien.oli@live.fr",
-//             motDePasse: "fafafafa",
-//             role: "B"
-//         },
-//         {
-//             nom: "Jean",
-//             prénom: "Bernard",
-//             age: 56,
-//             email: "bernard.jean@live.fr",
-//             motDePasse: "bebebebe",
-//             role: "A"
-//         }
-//     )
-// }
-
-// createUser();
 createPlanning();
