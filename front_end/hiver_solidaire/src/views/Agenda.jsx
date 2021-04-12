@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
-import Infos from '../views/Infos'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 
 function Agenda() {
+    
     const [planning, setPlanning] = useState([]);
     useEffect(() => {
         return fetch("http://localhost:8000/planning")
@@ -26,10 +28,16 @@ function Agenda() {
         .bénévole
         if(benevole ){
             return(<>
-                <Link to="/infos">
+                  
                 <p>{benevole.nom}</p>
-                <p>Link{benevole.prénom}</p>
-                </Link>
+                <p>{benevole.prénom}</p>
+                <Popup trigger={<button > INFOS </button>} position="right center">
+                <div>
+                    <p>Nom :{benevole.nom}</p>
+                     <p>Prénom :{benevole.prénom}</p>
+                     <p>Email :{benevole.email}</p>
+                </div>
+                </Popup> 
                 </>
             )
         }else{
@@ -38,9 +46,11 @@ function Agenda() {
             )       
         }      
     }
+
+    
     return (
        
-       <>
+       <BrowserRouter>
 
        {planning.length === 0 ? <p>loading</p> : (
            <>
@@ -127,8 +137,10 @@ function Agenda() {
             </table>
            </>
        ) }
+        <Switch>
         
-        </>
+        </Switch>
+        </BrowserRouter>
     )
 }
 export default Agenda;
