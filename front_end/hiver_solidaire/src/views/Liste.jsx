@@ -3,7 +3,7 @@ import moment from 'moment'
 
 export default function Liste() {
   const [userListe, setUserListe] = useState([]);
- 
+
 
   useEffect(() => {
     fetch("http://localhost:8000/liste", {
@@ -18,11 +18,11 @@ export default function Liste() {
   }, []);
 
   return (
-    <>
-      <h1>La liste des activité pour lesquelles tu est inscrit</h1>
+    <div className="container">
+      <h1 style={{ textAlign: "center", width: "50%" }}>Liste et dates des activités </h1>
       {userListe.map((response) => {
         return (
-          <>
+          < >
             <div className="card">
               <h5 className="card-header">Activité</h5>
               <div className="card-body">
@@ -38,6 +38,6 @@ export default function Liste() {
           </>
         );
       })}
-    </>
+    </div>
   );
 }
