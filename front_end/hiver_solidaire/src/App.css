@@ -57,4 +57,18 @@ h3{
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
     border-radius : 5px;
 }
+.video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
+  }
+  
+  .video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
 
