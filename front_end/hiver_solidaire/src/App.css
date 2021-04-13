@@ -1,7 +1,11 @@
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #B3E5FC;
-    border-radius: 10px;
-    margin: 0%;
+min-height : 100vh;
     
 }
 
@@ -41,6 +45,16 @@ body {
 }
 
 .number3 {
-    font-weight: 500
+    font-weight: 500;
+}
+
+.navbar {
+    padding: 5px;
+    background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
+}
+
+h3{
+    background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
+    border-radius : 5px;
 }
 

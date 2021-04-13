@@ -1,4 +1,6 @@
 import React from "react";
+import '../App.css';
+import { Styles } from '../components/styles';
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button } from "antd";
 
@@ -33,111 +35,117 @@ export default function Signup() {
         history.push("/login");
       }
     } catch (err) {
-      console.log(err,'marche po');
+      console.log(err, 'marche po');
     }
   };
 
   return (
-    <Form {...layout} name="basic" onFinish={onFinish}>
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Entrez votre email !",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
 
-      <Form.Item
-        label="Mot de passe"
-        name="motDePasse"
-        rules={[
-          {
-            required: true,
-            message: "Entrez votre mot de passe!",
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        label="Confirmation du MDP"
-        name="confirm_password"
-        dependencies={["motDePasse"]}
-        rules={[
-          {
-            required: true,
-            message: "Confirmez votre mot de passe !",
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue("motDePasse") === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(
-                new Error("Vos mots de passes doivent etre identiques!")
-              );
+    <Styles>
+      <Form {...layout} name="basic" onFinish={onFinish} className="formInscrition">
+        <h2>Inscription</h2>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Entrez votre email !",
             },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        label="Prenom"
-        name="prénom"
-        rules={[
-          {
-            required: true,
-            message: "Entrez votre prénom!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Mot de passe"
+          name="motDePasse"
+          rules={[
+            {
+              required: true,
+              message: "Entrez votre mot de passe!",
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-      <Form.Item
-        label="Nom"
-        name="nom"
-        rules={[
-          {
-            required: true,
-            message: "Entrez votre Nom!",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Confirmation du MDP"
+          name="confirm_password"
+          dependencies={["motDePasse"]}
+          rules={[
+            {
+              required: true,
+              message: "Confirmez votre mot de passe !",
+            },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue("motDePasse") === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  new Error("Vos mots de passes doivent etre identiques!")
+                );
+              },
+            }),
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-      <Form.Item
-        name="age"
-        label="Age"
-        rules={[
-          {
-            required: true,
-            message: "Entrez votre age",
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+        <Form.Item
+          label="Prenom"
+          name="prénom"
+          rules={[
+            {
+              required: true,
+              message: "Entrez votre prénom!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          S'inscrire
+        <Form.Item
+          label="Nom"
+          name="nom"
+          rules={[
+            {
+              required: true,
+              message: "Entrez votre Nom!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="age"
+          label="Age"
+          rules={[
+            {
+              required: true,
+              message: "Entrez votre age",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            S'inscrire
         </Button>
-      </Form.Item>
-    </Form>
+        </Form.Item>
+      </Form>
+
+    </Styles>
+
   );
 }

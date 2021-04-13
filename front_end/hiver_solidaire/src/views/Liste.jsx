@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import moment from 'moment'
+import { Styles } from '../components/styles';
+import moment from 'moment';
 
 export default function Liste() {
   const [userListe, setUserListe] = useState([]);
@@ -18,26 +19,29 @@ export default function Liste() {
   }, []);
 
   return (
-    <div className="container">
-      <h1 style={{ textAlign: "center", width: "50%" }}>Liste et dates des activités </h1>
-      {userListe.map((response) => {
-        return (
-          < >
-            <div className="card">
-              <h5 className="card-header">Activité</h5>
-              <div className="card-body">
-                <h5 className="card-title">{moment(response.date).format("DD MMM YY")}</h5>
-                <p className="card-text">
-                  {response.activité}
-                </p>
-                {/* <button className="btn btn-primary">
+    <Styles>
+      <div className="container  mt-5 d-flex justify-content-center liste">
+        <h3 style={{ textAlign: "center", margin: '30px', color: 'white' }}>Récapitulatif des choix</h3>
+        {userListe.map((response) => {
+          return (
+            < >
+              <div className="card">
+                <h4 className="card-header">{moment(response.date).format("DD MMM YY")}</h4>
+                <div className="card-body">
+                  <h6 className="card-text">
+                    {response.activité}
+                  </h6>
+                  {/* <button className="btn btn-primary">
                   Annulation
                 </button> */}
+                </div>
               </div>
-            </div>
-          </>
-        );
-      })}
-    </div>
+            </>
+          );
+        })}
+      </div>
+
+    </Styles>
+
   );
 }
