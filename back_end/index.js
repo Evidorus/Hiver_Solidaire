@@ -8,6 +8,14 @@ const PlanningModel = require('./models/Planning');
 const UserModel = require('./models/User');
 const authRoutes = require('./routes/auth');
 const checkAuth = require('./middlewares/auth.middlewares')
+const path = require("path");
+
+
+const multer  = require('multer');
+const upload = multer({ dest:'public'});
+const fs = require("fs");
+app.use(express.static('public'));
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -116,3 +124,16 @@ app.get('/liste',checkAuth, async (req, res) => {
 })
 
 
+app.post('/profilPicture',upload.single('image'), checkAuth, (req, res) => {
+    console.log(req.token);
+    const user = req.token;
+    console.log(req.file);
+    fs.renameSync(req.file.path, path.join(req.file.destination, req.file.originalname));
+    user.image = `http://localhost:8000/${req.file.originalname}`;
+    user.save();
+    res.send(user.image);
+  
+   
+  });
+
+  

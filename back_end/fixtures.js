@@ -12,12 +12,13 @@ async function createPlanning() {
     await UserModel.deleteMany({}).exec();
     const Users = await UserModel.create(
         {
-            nom: "Olicard",
+            nom: "Olicard ",
             prénom: "Fabien",
             age: 24,
             email: "fabien.oli@live.fr",
             motDePasse: "fafafafa",
-            role: "B"
+            role: "B",
+            numero: "+336 12 34 56 78 90",
         },
         {
             nom: "Jean",
@@ -25,7 +26,8 @@ async function createPlanning() {
             age: 56,
             email: "bernard.jean@live.fr",
             motDePasse: "bebebebe",
-            role: "A"
+            role: "A",
+            numero: "+337 09 87 65 43 21",
         }
     )
     await PlanningModel.deleteMany({}).exec();

@@ -65,6 +65,7 @@ function Agenda() {
               <p>Nom :{benevole.nom}</p>
               <p>Prénom :{benevole.prénom}</p>
               <p>Email :{benevole.email}</p>
+              <p>Numéro :{benevole.numero}</p>
             </div>
           </Popup>
         </>
