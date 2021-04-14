@@ -78,7 +78,7 @@ app.get('/users', async (req, res) => {
 
 app.get('/profil', checkAuth, async (req, res) => {
     try {
-        console.log(tokenUser)
+        const tokenUser = req.token
         const user = await UserModel.findOne({
             _id: tokenUser._id
         })

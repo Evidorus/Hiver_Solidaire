@@ -3,7 +3,9 @@ import { Styles } from "../components/styles";
 import "../App.css";
 import { BrowserRouter, Switch } from "react-router-dom";
 import Popup from "reactjs-popup";
+import { Calendar, Badge } from 'antd';
 import "reactjs-popup/dist/index.css";
+import moment from 'moment';
 
 function Agenda() {
   const [planning, setPlanning] = useState([]);
@@ -174,13 +176,13 @@ function Agenda() {
                     }}
                   >
                     <th scope="col"></th>
-                    <th scope="col">Lundi</th>
-                    <th scope="col">Mardi</th>
-                    <th scope="col">Mercredi</th>
-                    <th scope="col">Jeudi</th>
-                    <th scope="col">Vendredi</th>
-                    <th scope="col">Samedi</th>
-                    <th scope="col">Dimanche</th>
+                    <th scope="col">Lundi{moment(planning[0].date).format("DD MMM YY")}</th>
+                    <th scope="col">Mardi{moment(planning[5].date).format("DD MMM YY")}</th>
+                    <th scope="col">Mercredi{moment(planning[10].date).format("DD MMM YY")}</th>
+                    <th scope="col">Jeudi{moment(planning[15].date).format("DD MMM YY")}</th>
+                    <th scope="col">Vendredi{moment(planning[20].date).format("DD MMM YY")}</th>
+                    <th scope="col">Samedi{moment(planning[25].date).format("DD MMM YY")}</th>
+                    <th scope="col">Dimanche{moment(planning[30].date).format("DD MMM YY")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -190,48 +192,48 @@ function Agenda() {
                     </th>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-02T23:00:00.000Z",
-                        "Fournir et partager le petit déjeuner"
+                        `${planning[0].date}`,
+                        `${planning[0].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-02T23:00:00.000Z",
-                        "Fournir et partager le petit déjeuner"
+                        `${planning[5].date}`,
+                        `${planning[5].activité}`
                       )}
                     </td>
                     <td>
                       {" "}
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[10].date}`,
+                        `${planning[10].activité}`
                       )}{" "}
                     </td>
                     <td>
                       {" "}
                       {ckeckPlanning(
-                        "2022-01-02T23:00:00.000Z",
-                        "Fournir et partager le petit déjeuner"
+                        `${planning[15].date}`,
+                        `${planning[15].activité}`
                       )}{" "}
                     </td>
                     <td>
                       {" "}
                       {ckeckPlanning(
-                        "2022-01-02T23:00:00.000Z",
-                        "Fournir et partager le petit déjeuner"
+                        `${planning[20].date}`,
+                        `${planning[20].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-08T23:00:00.000Z",
-                        "Fournir et partager le petit déjeuner"
+                        `${planning[25].date}`,
+                        `${planning[25].activité}`
                       )}{" "}
                     </td>
                     <td>
                       {" "}
                       {ckeckPlanning(
-                        "2022-01-02T23:00:00.000Z",
-                        "Fournir et partager le petit déjeuner"
+                        `${planning[30].date}`,
+                        `${planning[30].activité}`
                       )}
                     </td>
                   </tr>
@@ -241,44 +243,44 @@ function Agenda() {
                     </th>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[1].date}`,
+                        `${planning[1].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[6].date}`,
+                        `${planning[6].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[11].date}`,
+                        `${planning[11].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[16].date}`,
+                        `${planning[16].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[21].date}`,
+                        `${planning[21].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[26].date}`,
+                        `${planning[26].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-03T23:00:00.000Z",
-                        "Préparer et partager le repas"
+                        `${planning[31].date}`,
+                        `${planning[31].activité}`
                       )}
                     </td>
                   </tr>
@@ -289,44 +291,44 @@ function Agenda() {
                     </th>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[2].date}`,
+                        `${planning[2].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[7].date}`,
+                        `${planning[7].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[12].date}`,
+                        `${planning[12].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[17].date}`,
+                        `${planning[17].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[22].date}`,
+                        `${planning[22].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[27].date}`,
+                        `${planning[27].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-04T23:00:00.000Z",
-                        "Préparer le repas chez soi et le tenir à disposition"
+                        `${planning[32].date}`,
+                        `${planning[32].activité}`
                       )}
                     </td>
                   </tr>
@@ -336,44 +338,44 @@ function Agenda() {
                     </th>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-06T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[3].date}`,
+                        `${planning[3].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-06T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[8].date}`,
+                        `${planning[8].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-06T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[13].date}`,
+                        `${planning[13].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-05T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[18].date}`,
+                        `${planning[18].activité}`
                       )}{" "}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-06T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[23].date}`,
+                        `${planning[23].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-06T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[28].date}`,
+                        `${planning[28].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-06T23:00:00.000Z",
-                        "Récupérer le repas et le partager"
+                        `${planning[33].date}`,
+                        `${planning[33].activité}`
                       )}
                     </td>
                   </tr>
@@ -383,44 +385,44 @@ function Agenda() {
                     </th>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[4].date}`,
+                        `${planning[4].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[9].date}`,
+                        `${planning[9].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[14].date}`,
+                        `${planning[14].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[19].date}`,
+                        `${planning[19].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[24].date}`,
+                        `${planning[24].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[29].date}`,
+                        `${planning[29].activité}`
                       )}
                     </td>
                     <td>
                       {ckeckPlanning(
-                        "2022-01-07T23:00:00.000Z",
-                        "Passer la nuit"
+                        `${planning[34].date}`,
+                        `${planning[34].activité}`
                       )}
                     </td>
                   </tr>
