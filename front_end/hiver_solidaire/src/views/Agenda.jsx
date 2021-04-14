@@ -99,7 +99,8 @@ function Agenda() {
           <div className="container">
 
             <div className="table-responsive">
-              <div className="row">
+              <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
+              {/* <div className="row">
                 <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
                 <ul style={{ textAlign: "center", padding: "0" }}>
                   <li> <b>7h à 8h </b>: Fournir et partager le petit déjeuner </li>
@@ -108,7 +109,7 @@ function Agenda() {
                   <li><b>20h à 22h </b> : Récupérer le repas et le partager </li>
                   <li><b>22h à 8h </b> : Passer la nuit</li>
                 </ul>
-              </div>
+              </div> */}
               <table className="table table-hover table-bordered align-middle" >
                 <thead style={{ backgroundColor: "#ddac6e" }}>
                   <tr style={{ textAlign: "center", fontSize: "16px", fontWeight: "bolder" }}>
@@ -125,7 +126,7 @@ function Agenda() {
                 <tbody>
                   <tr>
                     <th scope="row">
-                      Fournir et partager le petit déjeuner entre 7h à 8h
+                      <b>7h à 8h </b>: Fournir et partager le petit déjeuner
                 </th>
                     <td>
                       {ckeckPlanning(
@@ -175,7 +176,7 @@ function Agenda() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">Préparer et partager le repas à 12 h</th>
+                    <th scope="row"><b>12h </b> : Préparer et partager le repas</th>
                     <td>
                       {ckeckPlanning(
                         "2022-01-03T23:00:00.000Z",
@@ -221,7 +222,7 @@ function Agenda() {
                   </tr>
                   <tr>
                     <th scope="row">
-                      Préparer le repas chez soi et le tenir à disposition
+                      <b>18h à 20h </b> : Préparer le repas chez soi et le tenir à disposition
                 </th>
                     <td>
                       {ckeckPlanning(
@@ -267,7 +268,7 @@ function Agenda() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">Récupérer le repas et le partager</th>
+                    <th scope="row"><b>20h à 22h </b> : Récupérer le repas et le partager </th>
                     <td>
                       {ckeckPlanning(
                         "2022-01-06T23:00:00.000Z",
@@ -312,7 +313,7 @@ function Agenda() {
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row">Passer la nuit</th>
+                    <th scope="row"><b>22h à 8h </b> : Passer la nuit</th>
                     <td>
                       {ckeckPlanning("2022-01-07T23:00:00.000Z", "Passer la nuit")}
                     </td>

@@ -22,19 +22,18 @@ function Navbar() {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <ul className="navbar-nav mr-auto">
-
-                            <li className="nav-item">
-                                <Link to="/agenda" className="nav-link active" >Agenda</Link>
+                        <ul className="navbar-nav" >
+                            <li className="nav-item" >
+                                <Link to="/signup" className="nav-link text-warning" >Inscription</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/signup" className="nav-link active" >Inscription</Link>
+                                <Link to="/login" className="nav-link text-warning" >Connection</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link active" >Connection</Link>
+                                <Link to="/profile" className="nav-link text-warning" >Profil</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/profile" className="nav-link active" >Profile</Link>
+                                <Link to="/agenda" className="nav-link text-warning" >Agenda</Link>
                             </li>
                         </ul>
                     </div>

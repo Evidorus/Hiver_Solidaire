@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Styles = styled.div`
 h1,
-h5{
+h5,
+h4{
     color : #37628d;
 }
 
@@ -15,9 +16,9 @@ h2{
 form{
     display : flex;
     flex-direction : column;
-    width : 80%;
+    width : 70%;
     height : auto;
-    margin : 100px auto;
+    margin : 50px auto;
     border : 1px solid white;
     border-radius : 5px;
     box-shadow : 0 8px 16px rgba(0,0,0,.3)
@@ -38,9 +39,8 @@ button{
 .liste{
     display : flex;
     flex-direction : column;
-    max-width : 30%;
+    width : 100%;
     height : auto;
-    margin : 100px auto;
     border : 1px solid white;
     border-radius : 5px;
     box-shadow : 0 8px 16px rgba(0,0,0,.3)
@@ -48,6 +48,8 @@ button{
 
 .nomAgenda{
     text-align: center;
+    font-family: 'Leckerli One', cursive;
+    color :  #f69d3c;
 }
 
 #rowHome{
