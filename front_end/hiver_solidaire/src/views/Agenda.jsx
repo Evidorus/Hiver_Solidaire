@@ -130,6 +130,7 @@ function Agenda() {
           <div className="container">
             <div className="table-responsive">
               <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
+
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
                   <li class="page-item">
@@ -140,6 +141,7 @@ function Agenda() {
                     >
                       <span aria-hidden="true">&laquo;</span>
                     </button>
+
                   </li>
                   {paginationItem()}
                   <li class="page-item">
@@ -163,13 +165,13 @@ function Agenda() {
                     }}
                   >
                     <th scope="col"></th>
-                    <th scope="col">Lundi{moment(planning[0].date).format("DD MMM YY")}</th>
-                    <th scope="col">Mardi{moment(planning[5].date).format("DD MMM YY")}</th>
-                    <th scope="col">Mercredi{moment(planning[10].date).format("DD MMM YY")}</th>
-                    <th scope="col">Jeudi{moment(planning[15].date).format("DD MMM YY")}</th>
-                    <th scope="col">Vendredi{moment(planning[20].date).format("DD MMM YY")}</th>
-                    <th scope="col">Samedi{moment(planning[25].date).format("DD MMM YY")}</th>
-                    <th scope="col">Dimanche{moment(planning[30].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Lundi</p>{moment(planning[0].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Mardi</p>{moment(planning[5].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Mercredi</p>{moment(planning[10].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Jeudi</p>{moment(planning[15].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Vendredi</p>{moment(planning[20].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Samedi</p>{moment(planning[25].date).format("DD MMM YY")}</th>
+                    <th scope="col"><p>Dimanche</p>{moment(planning[30].date).format("DD MMM YY")}</th>
                   </tr>
                 </thead>
                 <tbody>

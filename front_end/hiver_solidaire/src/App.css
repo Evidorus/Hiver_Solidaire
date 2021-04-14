@@ -51,7 +51,7 @@ min-height : 100vh;
 .navbar {
     padding: 5px;
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
-    font-size: 1.3em;
+    font-size: 1.4em;
 }
 
 h1,
@@ -112,5 +112,8 @@ h3,
     -ms-transform: rotate(60deg);
     -webkit-transform: rotate(60deg);
     transform: rotate(60deg);
+}
+#footersocial{
+    margin: 6%;
 }
 

@@ -4,8 +4,8 @@ import "../App.css";
 function SocialIcons() {
     return (
 
-        <footer className="bg-light text-center text-white">
-            <div className="container p-4 pb-0">
+        <footer className="bg-light text-center text-white" id="footersocial">
+            <div className="container-fluid" >
                 <section className="mb-4">
                     <a
                         className="btn btn-primary btn-floating m-1 rounded-circle "

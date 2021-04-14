@@ -11,7 +11,7 @@ function Navbar() {
 
     return (
         <BrowserRouter>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <Link to="/" classNameName="navbar-brand">
                         <img style={{ width: "20%" }} src="./imgHS/logoHS.png" alt="Hiver Solidaire" /></Link>
@@ -22,7 +22,7 @@ function Navbar() {
 
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <ul className="navbar-nav" >
+                        <ul className="navbar-nav " >
                             <li className="nav-item" >
                                 <Link to="/signup" className="nav-link " >Inscription</Link>
                             </li>
