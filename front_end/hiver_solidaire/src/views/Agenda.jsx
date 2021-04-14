@@ -98,6 +98,7 @@ function Agenda() {
               <p className="nomAgenda">Nom :{benevole.nom}</p>
               <p className="nomAgenda">Prénom :{benevole.prénom}</p>
               <p>Email :{benevole.email}</p>
+              <p>Numéro :{benevole.numero}</p>
             </div>
           </Popup>
         </Styles>

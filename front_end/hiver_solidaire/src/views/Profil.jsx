@@ -5,6 +5,7 @@ import Liste from "./Liste";
 
 export default function Profil() {
   const [User, setUser] = useState([]);
+  const [image, setImage] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:8000/profil", {
@@ -18,18 +19,35 @@ export default function Profil() {
       });
   }, []);
 
-  const logout = () => {
-    localStorage.clear();
-  }
+  const addImage = () => {
+    const formData = new FormData();
+     formData.append('image',image);
+     fetch("http://localhost:8000/profilPicture",{
+        headers:{
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+         method:"POST",
+         body:formData,
+     })
+  };
+
+  const addProfilimage = (event) => {
+    setImage(event.target.files[0])
+}
+const refreshProfilPage = () => {
+  window.location.reload(false)
+}
+
+
 
   return (
-    <Styles>
-      <div className="container mt-5 d-flex justify-content-center liste">
+    <>
+      <div className="container mt-5 d-flex justify-content-center">
         <div className="card p-8">
           <div className="d-flex align-items-center">
             <div className="image">
               <img
-                src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
+                src={User.image ? User.image : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
                 className="rounded"
                 width="155"
                 alt="Profil"
@@ -51,7 +69,7 @@ export default function Profil() {
                 </div>
                 <div className="d-flex flex-column">
                   <span className="rating">Téléphone</span>
-                  <span className="number3">0767532573</span>
+                  <span className="number3">{User.numero}</span>
                 </div>
               </div>
               <div className="button mt-2 d-flex flex-row align-items-center">
@@ -65,10 +83,14 @@ export default function Profil() {
             </div>
           </div>
         </div>
+
       </div>
-
-      <Liste />
-
-    </Styles>
+      <input type="file" onChange={addProfilimage} />
+      <button 
+       onClick={() => {
+       addImage(); refreshProfilPage()
+      }}
+      >changer mon image</button>
+    </>
   );
 }
