@@ -53,7 +53,14 @@ min-height : 100vh;
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
 }
 
+h1,
+h2,
 h3{
+    font-family: 'Leckerli One', cursive;
+}
+
+h3,
+#footerbar{
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
     border-radius : 5px;
 }
@@ -71,4 +78,37 @@ h3{
     width: 100%;
     position: absolute;
   }
+
+  .unq_btn a{
+    display: inline-block;
+    text-decoration: none;
+    font-size: 25px;
+}
+.unq_btn .fa-stack-1x {
+    color: white;
+    font-size: 18px;
+}
+.unq_btn .fa-stack-2x {
+    transition: .3s;
+}
+.unq_btn .twitter .fa-certificate {
+  color: #74c1f8;
+}
+.unq_btn .fb .fa-certificate {
+  color: #668ad8;
+}
+.unq_btn .pocket .fa-certificate {
+  color: #f79393;
+}
+.unq_btn .feedly .fa-certificate {
+  color: #acde71;
+}
+.unq_btn .gplus .fa-certificate {
+  color: #ed7168;
+}
+.unq_btn a:hover .fa-stack-2x {
+    -ms-transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    transform: rotate(60deg);
+}
 
