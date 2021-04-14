@@ -24,16 +24,16 @@ function Navbar() {
 
                         <ul className="navbar-nav" >
                             <li className="nav-item" >
-                                <Link to="/signup" className="nav-link text-warning" >Inscription</Link>
+                                <Link to="/signup" className="nav-link " >Inscription</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link text-warning" >Connection</Link>
+                                <Link to="/login" className="nav-link " >Connection</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/profile" className="nav-link text-warning" >Profil</Link>
+                                <Link to="/profile" className="nav-link " >Profil</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/agenda" className="nav-link text-warning" >Agenda</Link>
+                                <Link to="/agenda" className="nav-link " >Agenda</Link>
                             </li>
                         </ul>
                     </div>

@@ -40,7 +40,7 @@ function SocialIcons() {
                 </section>
             </div>
 
-            <div className="text-center p-3 " id='footerbar' style={{ backgroundColor: "rgba(0, 0, 0, 0.2)", color: " #f69d3c" }}>
+            <div className="text-center p-3 " id='footerbar' style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}>
                 © 2021 Copyright Hiver Solidaire
             </div>
 
