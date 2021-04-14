@@ -302,6 +302,28 @@ async function createPlanning() {
             bénévole: Users[1]._id
         },
         {
+            date: '2022/01/15',
+            activité: "Fournir et partager le petit déjeuner",
+        },
+        {
+            date: '2022/01/15',
+            activité: "Préparer et partager le repas",
+        },
+        {
+            date: '2022/01/15',
+            activité: "Préparer le repas chez soi et le tenir à disposition",
+            bénévole: Users[0]._id
+        },
+        {
+            date: '2022/01/15',
+            activité: "Récupérer le repas et le partager",
+        },
+        {
+            date: '2022/01/15',
+            activité: "Passer la nuit",
+            bénévole: Users[1]._id
+        },
+        {
             date: '2022/01/16',
             activité: "Fournir et partager le petit déjeuner",
         },
