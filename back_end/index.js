@@ -99,3 +99,13 @@ app.get('/liste', checkAuth, async (req, res) => {
         console.log(error)
     }
 })
+
+app.delete('/removeliste', checkAuth, async (req, res) => {
+    try{
+        console.log(req.body)
+        await PlanningModel.deleteOne(req.body)
+        res.send(`Votre action du ${req.body.date} pour l'activité ${req.body.activité} a bien était supprimer`)
+    } catch(error){
+        console.log(error)
+    }
+})

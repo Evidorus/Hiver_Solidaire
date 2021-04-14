@@ -19,6 +19,22 @@ export default function Liste() {
       });
   }, []);
 
+  const annulation = (action) => {
+    console.log(action.activité)
+    fetch("http://localhost:8000/removeliste", {
+      method: "DELETE",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(action),
+    })
+    .then((response) => {response.json()})
+    .then((response) => {
+      console.log(response)
+    })
+  }
+
   return (
     <Styles>
       <div className="container  mt-5 d-flex justify-content-center liste">
@@ -32,9 +48,9 @@ export default function Liste() {
                   <h6 className="card-text">
                     {response.activité}
                   </h6>
-                  {/* <button className="btn btn-primary">
+                  <button onClick={() => annulation(response)} className="btn btn-primary">
                   Annulation
-                </button> */}
+                </button>
                 </div>
               </div>
             </>
