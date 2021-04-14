@@ -18,6 +18,10 @@ export default function Profil() {
       });
   }, []);
 
+  const logout = () => {
+    localStorage.clear();
+  }
+
   return (
     <Styles>
       <div className="container  liste">
@@ -54,8 +58,8 @@ export default function Profil() {
                 <button className="btn btn-sm btn-outline-primary w-100">
                   Chat
                   </button>
-                <button className="btn btn-sm btn-primary w-100 ml-2">
-                  Follow
+                <button onClick={logout} className="btn btn-sm btn-primary w-100 ml-2">
+                  Se déconnecter
                   </button>
               </div>
             </div>
