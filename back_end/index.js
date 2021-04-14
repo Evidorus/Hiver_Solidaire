@@ -24,8 +24,19 @@ app.listen(port, () => {
 })
 
 app.get('/planning', async (req, res) => {
+    let limit = 7;
+    let page = 0;
+    if (req.query.limit) {
+        if (!parseInt(req.query.limit) || parseInt(req.query.limit) < 1) {
+            res.status(400).json({message: "Limit must be a positive number"});
+        }
+        limit = req.query.limit;
+    }
+    if (req.query.page) {
+        page = req.query.page
+    }
     try {
-        const planning = await PlanningModel.find({}).populate('bénévole').lean().exec()
+        const planning = await PlanningModel.find({}).populate('bénévole').skip(parseInt(page * limit)).limit(parseInt(limit)).lean().exec()
         res.json(planning)
     } catch (error) {
         console.log(error)
@@ -68,11 +79,9 @@ app.get('/users', async (req, res) => {
 app.get('/profil', checkAuth, async (req, res) => {
     try {
         const tokenUser = req.token
-        console.log(tokenUser)
         const user = await UserModel.findOne({
             _id: tokenUser._id
         })
-        console.log(user)
         res.json(user)
     } catch (error) {
         console.log(error)
@@ -90,29 +99,3 @@ app.get('/liste', checkAuth, async (req, res) => {
         console.log(error)
     }
 })
-
-app.get('/profil',checkAuth, async (req, res) => {
-    try{
-        const tokenUser = req.token
-        const user = await UserModel.findOne({
-            _id: tokenUser._id
-        })
-        res.json(user)
-    }catch(error){
-        console.log(error)
-    }
-})
-
-app.get('/liste',checkAuth, async (req, res) => {
-    try{
-        const tokenUser = req.token
-        const user = await PlanningModel.find({
-            bénévole: tokenUser._id
-        })
-        res.json(user)
-    }catch(error){
-        console.log(error)
-    }
-})
-
-
