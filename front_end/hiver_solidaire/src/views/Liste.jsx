@@ -5,6 +5,9 @@ export default function Liste() {
   const [userListe, setUserListe] = useState([]);
 
 
+  
+
+
   useEffect(() => {
     fetch("http://localhost:8000/liste", {
       headers: {
@@ -16,6 +19,18 @@ export default function Liste() {
         setUserListe(response);
       });
   }, []);
+
+  {/*debut de ma fonction */}
+  const handleChange = (event) => {
+    setUserListe({ value: event.target.value });
+  }
+
+  const handleSubmit = (event) => {  
+    alert('A name was submitted: ' + userListe);
+    setUserListe("");
+  };
+
+   {/*fin de ma fonction */}
 
   return (
     <div className="container">
@@ -32,7 +47,17 @@ export default function Liste() {
                 </p>
                 {/* <button className="btn btn-primary">
                   Annulation
-                </button> */}
+
+                </button> 
+                {/*debut de ma fonction */}
+                <form onSubmit={handleSubmit}>
+                  <label>
+                    <input type="texte" value={userListe} />
+                  </label>
+                  <button style={{ padding: 8 }} onChange={handleChange} className="btn btn-primary">delete</button>
+
+                </form>
+                {/*fin de ma fonction */}
               </div>
             </div>
           </>
