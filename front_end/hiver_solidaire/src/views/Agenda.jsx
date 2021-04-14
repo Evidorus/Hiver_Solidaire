@@ -131,28 +131,28 @@ function Agenda() {
             <div className="table-responsive">
               <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
               <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <button
-                    class="page-link"
-                    aria-label="Previous"
-                    onClick={previousPage}
-                  >
-                    <span aria-hidden="true">&laquo;</span>
-                  </button>
-                </li>
-                {paginationItem()}
-                <li class="page-item">
-                  <button
-                    class="page-link"
-                    aria-label="Next"
-                    onClick={nextPage}
-                  >
-                    <span aria-hidden="true">&raquo;</span>
-                  </button>
-                </li>
-              </ul>
-            </nav>
+                <ul class="pagination">
+                  <li class="page-item">
+                    <button
+                      class="page-link"
+                      aria-label="Previous"
+                      onClick={previousPage}
+                    >
+                      <span aria-hidden="true">&laquo;</span>
+                    </button>
+                  </li>
+                  {paginationItem()}
+                  <li class="page-item">
+                    <button
+                      class="page-link"
+                      aria-label="Next"
+                      onClick={nextPage}
+                    >
+                      <span aria-hidden="true">&raquo;</span>
+                    </button>
+                  </li>
+                </ul>
+              </nav>
               <table className="table table-hover table-bordered align-middle" >
                 <thead style={{ backgroundColor: "#ddac6e" }}>
                   <tr

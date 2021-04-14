@@ -20,7 +20,7 @@ export default function Profil() {
 
   return (
     <Styles>
-      <div className="container  liste">
+      <div className="container mt-5 d-flex justify-content-center liste">
         <div className="card p-8">
           <div className="d-flex align-items-center">
             <div className="image">
