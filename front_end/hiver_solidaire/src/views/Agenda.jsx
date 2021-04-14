@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Switch} from "react-router-dom";
+import { BrowserRouter, Switch } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 
@@ -8,13 +8,15 @@ function Agenda() {
   const [activité, setActivity] = useState();
   const [nom, setNom] = useState();
   const [prénom, setPrénom] = useState();
+  const [numberOfPage, setNumberOfPage] = useState(0);
+  const [page, setPage] = useState(0);
 
   useEffect(() => {
     RemovePlanning();
-  }, []);
+  }, [page]);
 
   const RemovePlanning = () => {
-    return fetch("http://localhost:8000/planning")
+    return fetch(`http://localhost:8000/planning?limit=35&page=${page}`)
       .then((response) => {
         return response.json();
       })
@@ -24,6 +26,7 @@ function Agenda() {
         setActivity(response);
         setNom(response);
         setPrénom(response);
+        setNumberOfPage(Math.floor(response.count / 35))
       });
   };
 
@@ -43,12 +46,34 @@ function Agenda() {
       })
       .then((response) => {
         console.log(response);
-        return RemovePlanning(nom, prénom)
+        return RemovePlanning(nom, prénom);
       });
   };
 
   const refreshPage = () => {
-    window.location.reload(false)
+    window.location.reload(false);
+  };
+
+  const previousPage = () => {
+    if (page >= 35) {
+      setPage(page - 35);
+    }
+  };
+  const nextPage = () => {
+    setPage(page + 35);
+  };
+
+  const paginationItem = () => {
+    const pages = [];
+    for (let i = 0; i < numberOfPage; i++) {
+      pages.push(
+        <li class="page-item">
+          <button class="page-link" onClick={() => setPage(i * 35)}>
+            {i + 1}
+          </button>
+        </li>
+      );
+    }
   }
 
   const ckeckPlanning = (date, activité) => {
@@ -77,7 +102,8 @@ function Agenda() {
         <button
           type="button"
           onClick={() => {
-            AddActivity(activity); refreshPage()
+            AddActivity(activity);
+            refreshPage();
           }}
         >
           S'inscrire
@@ -87,6 +113,25 @@ function Agenda() {
   };
   return (
     <BrowserRouter>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <button
+              class="page-link"
+              aria-label="Previous"
+              onClick={previousPage}
+            >
+              <span aria-hidden="true">&laquo;</span>
+            </button>
+          </li>
+          {paginationItem()}
+          <li class="page-item">
+            <button class="page-link" aria-label="Next" onClick={nextPage}>
+              <span aria-hidden="true">&raquo;</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
       {planning.length === 0 ? (
         <p>loading</p>
       ) : (
