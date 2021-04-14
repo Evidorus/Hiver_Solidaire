@@ -108,29 +108,15 @@ app.get('/liste', checkAuth, async (req, res) => {
     }
 })
 
-app.get('/profil',checkAuth, async (req, res) => {
+app.delete('/removeliste', checkAuth, async (req, res) => {
     try{
-        const tokenUser = req.token
-        const user = await UserModel.findOne({
-            _id: tokenUser._id
-        })
-        res.json(user)
-    }catch(error){
+        console.log(req.body)
+        await PlanningModel.deleteOne(req.body)
+        res.send(`Votre action du ${req.body.date} pour l'activité ${req.body.activité} a bien était supprimer`)
+    } catch(error){
         console.log(error)
     }
-})
-
-app.get('/liste',checkAuth, async (req, res) => {
-    try{
-        const tokenUser = req.token
-        const user = await PlanningModel.find({
-            bénévole: tokenUser._id
-        })
-        res.json(user)
-    }catch(error){
-        console.log(error)
-    }
-})
+}) 
 
 
 app.post('/profilPicture',upload.single('image'), checkAuth, (req, res) => {
@@ -141,8 +127,6 @@ app.post('/profilPicture',upload.single('image'), checkAuth, (req, res) => {
     user.image = `http://localhost:8000/${req.file.originalname}`;
     user.save();
     res.send(user.image);
-  
-   
   });
 
   

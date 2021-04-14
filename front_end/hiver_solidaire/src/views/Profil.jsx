@@ -38,11 +38,13 @@ const refreshProfilPage = () => {
   window.location.reload(false)
 }
 
-
+const logout = () => {
+  localStorage.clear();
+}
 
   return (
-    <>
-      <div className="container mt-5 d-flex justify-content-center">
+    <Styles>
+      <div className="container mt-5 d-flex justify-content-center liste">
         <div className="card p-8">
           <div className="d-flex align-items-center">
             <div className="image">
@@ -84,6 +86,8 @@ const refreshProfilPage = () => {
           </div>
         </div>
 
+        <Liste />
+
       </div>
       <input type="file" onChange={addProfilimage} />
       <button 
@@ -91,6 +95,6 @@ const refreshProfilPage = () => {
        addImage(); refreshProfilPage()
       }}
       >changer mon image</button>
-    </>
+    </Styles>
   );
 }
