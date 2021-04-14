@@ -51,11 +51,13 @@ min-height : 100vh;
 .navbar {
     padding: 5px;
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
+    font-size: 1.3em;
 }
 
 h1,
 h2,
-h3{
+h3,
+#thcreneaux{
     font-family: 'Leckerli One', cursive;
 }
 
