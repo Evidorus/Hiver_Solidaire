@@ -11,7 +11,7 @@ function Navbar() {
 
     return (
         <BrowserRouter>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+            <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
                     <Link to="/" classNameName="navbar-brand">
                         <img style={{ width: "20%" }} src="./imgHS/logoHS.png" alt="Hiver Solidaire" /></Link>
