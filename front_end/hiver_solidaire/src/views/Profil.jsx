@@ -8,7 +8,8 @@ export default function Profil() {
   const [image, setImage] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8000/profil", {
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/profil", {
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -17,18 +18,24 @@ export default function Profil() {
       .then((response) => {
         setUser(response);
       });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const addImage = () => {
     const formData = new FormData();
      formData.append('image',image);
-     fetch("http://localhost:8000/profilPicture",{
+     const interval = setInterval(() => {
+      fetch("http://localhost:8000/profilPicture",{
         headers:{
           authorization: "Bearer " + localStorage.getItem("token"),
         },
          method:"POST",
          body:formData,
      })
+    }, 1000);
+    return () => clearInterval(interval);
+     
   };
 
   const addProfilimage = (event) => {
@@ -38,11 +45,13 @@ const refreshProfilPage = () => {
   window.location.reload(false)
 }
 
-
+const logout = () => {
+  localStorage.clear();
+}
 
   return (
-    <>
-      <div className="container mt-5 d-flex justify-content-center">
+    <Styles>
+      <div className="container mt-5 d-flex justify-content-center liste">
         <div className="card p-8">
           <div className="d-flex align-items-center">
             <div className="image">
@@ -83,7 +92,6 @@ const refreshProfilPage = () => {
             </div>
           </div>
         </div>
-
       </div>
       <input type="file" onChange={addProfilimage} />
       <button 
@@ -91,6 +99,9 @@ const refreshProfilPage = () => {
        addImage(); refreshProfilPage()
       }}
       >changer mon image</button>
-    </>
+
+    <Liste />
+
+    </Styles>
   );
 }
