@@ -39,24 +39,24 @@ export default function Liste() {
  */}  
 
   {/*debut de ma fonction */}
-  const handleChange = (event) => {
-    console.log(event)
-    setUserListe({ value: event.target.value });
+  
 
-  }
-
-  const handleSubmit = (event) => {  
-    
-    alert('etes-vous sur de supprimer  :' +setUserListe([]));
-    
-  };
+  const handleDelete = (index) => {  
+    let newArray = [];
+     // console.log(index)
+     // console.log(userListe)
+        newArray = userListe.filter((user, indexEl) =>!(indexEl == index));
+       // console.log(newArray);
+        setUserListe(newArray)
+  //  alert('etes-vous sur de supprimer  :' +setUserListe([]));
+ };
 
    {/*fin de ma fonction */}
 
   return (
     <div className="container">
       <h1 style={{ textAlign: "center", width: "50%" }}>Liste et dates des activités </h1>
-      {userListe.map((response) => {
+      {userListe.map((response, index) => {
         return (
           < >
             <div className="card">
@@ -72,7 +72,7 @@ export default function Liste() {
                 </button> 
                 {/*debut de ma fonction */}
                 
-                   <button style={{ padding: 8 }} onChange={handleChange} onClick={handleSubmit} className="btn btn-primary">delete</button>
+                   <button style={{ padding: 8 }}  onClick={()=> handleDelete(index)} className="btn btn-primary">delete</button>
 
                 
                 {/*fin de ma fonction */}
