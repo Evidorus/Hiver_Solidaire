@@ -15,8 +15,7 @@ function Agenda() {
   const [prénom, setPrénom] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(0);
-  console.log(semaineStart)
-  console.log(semaineEnd)
+
 
   useEffect(() => {
     RemovePlanning();
@@ -96,7 +95,7 @@ function Agenda() {
           <p className="nomAgenda">{benevole.prénom}</p>
           <Popup
             trigger={
-              <button className="btn btn-warning btn-sm px-3 ">Info</button>
+              <i className="fas fa-info-circle fa-lg"></i>
             }
             position="right center"
           >
@@ -114,17 +113,21 @@ function Agenda() {
         return element.activité === activité && element.date === date;
       })._id;
       return (
-        <button
-          type="button"
-          className="btn btn-danger btn-sm px-3 "
-          style={{ margin: "10px", padding: "10px" }}
-          onClick={() => {
-            AddActivity(activity);
-            refreshPage();
-          }}
-        >
-          S'inscrire
+        <div style={{ backgroundColor: { color } }}>
+          <button
+            type="button"
+            className="btn btn-danger btn-sm px-3 "
+            style={{ margin: "10px", padding: "10px" }}
+            onClick={() => {
+              AddActivity(activity);
+              refreshPage();
+            }}
+          >
+            S'inscrire
         </button>
+
+        </div>
+
       );
     }
   };
@@ -134,7 +137,7 @@ function Agenda() {
         {planning.length === 0 ? (
           <p>loading</p>
         ) : (
-          <div className="container">
+          <div className="container liste">
             <div className="table-responsive">
               <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
               <nav aria-label="Page navigation example">
@@ -148,7 +151,7 @@ function Agenda() {
                       <span aria-hidden="false">&laquo; Semaine précédente</span>
                     </button>
                   </li>
-                  <b style={{marginLeft: 20}}>Semaine du {semaineStart} au {semaineEnd}</b>
+                  <b style={{ marginLeft: 20 }}>Semaine du {semaineStart} au {semaineEnd}</b>
                   {paginationItem()}
                   <li className="page-item">
                     <button
@@ -161,268 +164,272 @@ function Agenda() {
                   </li>
                 </ul>
               </nav>
-              <table className="table table-hover table-bordered align-middle" >
-                <thead style={{ backgroundColor: "#ddac6e" }}>
-                  <tr
-                    style={{
-                      textAlign: "center",
-                      fontSize: "16px",
-                      fontWeight: "bolder",
-                    }}
-                  >
-                    <th scope="col"></th>
-                    <th scope="col">Lundi{moment(planning[0].date).format("DD MMM YY")}</th>
-                    <th scope="col">Mardi{moment(planning[5].date).format("DD MMM YY")}</th>
-                    <th scope="col">Mercredi{moment(planning[10].date).format("DD MMM YY")}</th>
-                    <th scope="col">Jeudi{moment(planning[15].date).format("DD MMM YY")}</th>
-                    <th scope="col">Vendredi{moment(planning[20].date).format("DD MMM YY")}</th>
-                    <th scope="col">Samedi{moment(planning[25].date).format("DD MMM YY")}</th>
-                    <th scope="col">Dimanche{moment(planning[30].date).format("DD MMM YY")}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">
-                      <b>7h à 8h </b>: Fournir et partager le petit déjeuner
+
+              <div className="container d-flex">
+                <table className="table table-hover table-bordered align-middle " >
+                  <thead style={{ backgroundColor: "#ddac6e" }}>
+                    <tr
+                      style={{
+                        textAlign: "center",
+                        fontSize: "16px",
+                        fontWeight: "bolder",
+                      }}
+                    >
+                      <th scope="col">Activités</th>
+                      <th scope="col"><p>Lundi</p>{moment(planning[0].date).format("DD MMM YYYY")}</th>
+                      <th scope="col"><p>Mardi</p>{moment(planning[5].date).format("DD MMM YYYY")}</th>
+                      <th scope="col"><p>Mercredi</p>{moment(planning[10].date).format("DD MMM YYYY")}</th>
+                      <th scope="col"><p>Jeudi</p>{moment(planning[15].date).format("DD MMM YYYY")}</th>
+                      <th scope="col"><p>Vendredi</p>{moment(planning[20].date).format("DD MMM YYYY")}</th>
+                      <th scope="col"><p>Samedi</p>{moment(planning[25].date).format("DD MMM YYYY")}</th>
+                      <th scope="col"><p>Dimanche</p>{moment(planning[30].date).format("DD MMM YYYY")}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr >
+                      <th scope="row" id="tabledejeuner">
+                        <p><b>7h à 8h</b></p>Fournir et partager le petit déjeuner
                     </th>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[0].date}`,
-                        `${planning[0].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[5].date}`,
-                        `${planning[5].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {" "}
-                      {ckeckPlanning(
-                        `${planning[10].date}`,
-                        `${planning[10].activité}`
-                      )}{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      {ckeckPlanning(
-                        `${planning[15].date}`,
-                        `${planning[15].activité}`
-                      )}{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      {ckeckPlanning(
-                        `${planning[20].date}`,
-                        `${planning[20].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[25].date}`,
-                        `${planning[25].activité}`
-                      )}{" "}
-                    </td>
-                    <td>
-                      {" "}
-                      {ckeckPlanning(
-                        `${planning[30].date}`,
-                        `${planning[30].activité}`
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <b>12h </b> : Préparer et partager le repas
+                      <td id="tabledejeuner">
+                        {ckeckPlanning(
+                          `${planning[0].date}`,
+                          `${planning[0].activité}`
+                        )}
+                      </td>
+                      <td id="tabledejeuner">
+                        {ckeckPlanning(
+                          `${planning[5].date}`,
+                          `${planning[5].activité}`
+                        )}
+                      </td>
+                      <td id="tabledejeuner">
+                        {" "}
+                        {ckeckPlanning(
+                          `${planning[10].date}`,
+                          `${planning[10].activité}`
+                        )}{" "}
+                      </td>
+                      <td id="tabledejeuner">
+                        {" "}
+                        {ckeckPlanning(
+                          `${planning[15].date}`,
+                          `${planning[15].activité}`
+                        )}{" "}
+                      </td>
+                      <td id="tabledejeuner">
+                        {" "}
+                        {ckeckPlanning(
+                          `${planning[20].date}`,
+                          `${planning[20].activité}`
+                        )}
+                      </td>
+                      <td id="tabledejeuner">
+                        {ckeckPlanning(
+                          `${planning[25].date}`,
+                          `${planning[25].activité}`
+                        )}{" "}
+                      </td>
+                      <td id="tabledejeuner">
+                        {" "}
+                        {ckeckPlanning(
+                          `${planning[30].date}`,
+                          `${planning[30].activité}`
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" id="tablemidi">
+                        <p><b>12h</b></p>Préparer et partager le repas
                     </th>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[1].date}`,
-                        `${planning[1].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[6].date}`,
-                        `${planning[6].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[11].date}`,
-                        `${planning[11].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[16].date}`,
-                        `${planning[16].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[21].date}`,
-                        `${planning[21].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[26].date}`,
-                        `${planning[26].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[31].date}`,
-                        `${planning[31].activité}`
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <b>18h à 20h </b> : Préparer le repas chez soi et le tenir
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[1].date}`,
+                          `${planning[1].activité}`
+                        )}
+                      </td>
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[6].date}`,
+                          `${planning[6].activité}`
+                        )}
+                      </td>
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[11].date}`,
+                          `${planning[11].activité}`
+                        )}
+                      </td>
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[16].date}`,
+                          `${planning[16].activité}`
+                        )}
+                      </td>
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[21].date}`,
+                          `${planning[21].activité}`
+                        )}
+                      </td>
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[26].date}`,
+                          `${planning[26].activité}`
+                        )}
+                      </td>
+                      <td id="tablemidi">
+                        {ckeckPlanning(
+                          `${planning[31].date}`,
+                          `${planning[31].activité}`
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" id="tablesouper">
+                        <p><b>18h à 20h</b></p>Préparer le repas chez soi et le tenir
                       à disposition
                     </th>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[2].date}`,
-                        `${planning[2].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[7].date}`,
-                        `${planning[7].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[12].date}`,
-                        `${planning[12].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[17].date}`,
-                        `${planning[17].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[22].date}`,
-                        `${planning[22].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[27].date}`,
-                        `${planning[27].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[32].date}`,
-                        `${planning[32].activité}`
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <b>20h à 22h </b> : Récupérer le repas et le partager{" "}
+                      <td id="tablesouper">
+                        {ckeckPlanning(
+                          `${planning[2].date}`,
+                          `${planning[2].activité}`
+                        )}
+                      </td>
+                      <td>
+                        {ckeckPlanning(
+                          `${planning[7].date}`,
+                          `${planning[7].activité}`
+                        )}
+                      </td>
+                      <td id="tablesouper">
+                        {ckeckPlanning(
+                          `${planning[12].date}`,
+                          `${planning[12].activité}`
+                        )}
+                      </td>
+                      <td id="tablesouper">
+                        {ckeckPlanning(
+                          `${planning[17].date}`,
+                          `${planning[17].activité}`
+                        )}
+                      </td>
+                      <td id="tablesouper">
+                        {ckeckPlanning(
+                          `${planning[22].date}`,
+                          `${planning[22].activité}`
+                        )}
+                      </td>
+                      <td id="tablesouper">
+                        {ckeckPlanning(
+                          `${planning[27].date}`,
+                          `${planning[27].activité}`
+                        )}
+                      </td>
+                      <td id="tablesouper">
+                        {ckeckPlanning(
+                          `${planning[32].date}`,
+                          `${planning[32].activité}`
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" id="tableapressouper">
+                        <p><b>20h à 22h</b></p>Récupérer le repas et le partager{" "}
+                      </th>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[3].date}`,
+                          `${planning[3].activité}`
+                        )}
+                      </td>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[8].date}`,
+                          `${planning[8].activité}`
+                        )}
+                      </td>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[13].date}`,
+                          `${planning[13].activité}`
+                        )}
+                      </td>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[18].date}`,
+                          `${planning[18].activité}`
+                        )}{" "}
+                      </td>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[23].date}`,
+                          `${planning[23].activité}`
+                        )}
+                      </td>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[28].date}`,
+                          `${planning[28].activité}`
+                        )}
+                      </td>
+                      <td id="tableapressouper">
+                        {ckeckPlanning(
+                          `${planning[33].date}`,
+                          `${planning[33].activité}`
+                        )}
+                      </td>
+                    </tr>
+                    <tr>
+                      <th scope="row" id="tablenuit">
+                        <p><b>22h à 8h</b></p>Passer la nuit
                     </th>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[3].date}`,
-                        `${planning[3].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[8].date}`,
-                        `${planning[8].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[13].date}`,
-                        `${planning[13].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[18].date}`,
-                        `${planning[18].activité}`
-                      )}{" "}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[23].date}`,
-                        `${planning[23].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[28].date}`,
-                        `${planning[28].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[33].date}`,
-                        `${planning[33].activité}`
-                      )}
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">
-                      <b>22h à 8h </b> : Passer la nuit
-                    </th>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[4].date}`,
-                        `${planning[4].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[9].date}`,
-                        `${planning[9].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[14].date}`,
-                        `${planning[14].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[19].date}`,
-                        `${planning[19].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[24].date}`,
-                        `${planning[24].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[29].date}`,
-                        `${planning[29].activité}`
-                      )}
-                    </td>
-                    <td>
-                      {ckeckPlanning(
-                        `${planning[34].date}`,
-                        `${planning[34].activité}`
-                      )}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[4].date}`,
+                          `${planning[4].activité}`
+                        )}
+                      </td>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[9].date}`,
+                          `${planning[9].activité}`
+                        )}
+                      </td>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[14].date}`,
+                          `${planning[14].activité}`
+                        )}
+                      </td>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[19].date}`,
+                          `${planning[19].activité}`
+                        )}
+                      </td>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[24].date}`,
+                          `${planning[24].activité}`
+                        )}
+                      </td>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[29].date}`,
+                          `${planning[29].activité}`
+                        )}
+                      </td>
+                      <td id="tablenuit">
+                        {ckeckPlanning(
+                          `${planning[34].date}`,
+                          `${planning[34].activité}`
+                        )}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
           </div>
         )}
