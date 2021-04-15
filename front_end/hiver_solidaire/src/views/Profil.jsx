@@ -76,7 +76,7 @@ const refreshProfilPage = () => {
                 <button className="btn btn-sm btn-outline-primary w-100">
                   Chat
                   </button>
-                <button onClick={logout} className="btn btn-sm btn-primary w-100 ml-2">
+                <button  className="btn btn-sm btn-primary w-100 ml-2">
                   Se déconnecter
                   </button>
               </div>
