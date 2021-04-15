@@ -1,72 +1,99 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from 'react-router-dom';
 import "../App.css";
-
+import { Styles } from '../components/styles';
+import Liste from "./Liste";
 export default function Profil() {
   const [User, setUser] = useState([]);
-
-  {/*const logout = () => {
-    localStorage.clear();
-  } 
-*/}
- const logout = () => {
-  localStorage.clear();
- }
-
+  const [image, setImage] = useState({});
   useEffect(() => {
-    fetch("http://localhost:8000/profil", {
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/profil", {
         headers: {
-            authorization: "Bearer " + localStorage.getItem("token"),
-          },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setUser(response);
-      });
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setUser(response);
+        });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
-
-      return (
-        <div className="container mt-5 d-flex justify-content-center">
-          <div className="card p-8">
-            <div className="d-flex align-items-center">
-              <div className="image">
-                <img
-                  src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80"
-                  className="rounded"
-                  width="155"
-                  alt="Profil"
-                />
-              </div>
-              <div className="ml-3 w-100">
-                <h4 className="mb-0 mt-0">
+  const addImage = () => {
+    const formData = new FormData();
+    formData.append('image', image);
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/profilPicture", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        method: "POST",
+        body: formData,
+      })
+    }, 1000);
+    return () => clearInterval(interval);
+  };
+  const addProfilimage = (event) => {
+    setImage(event.target.files[0])
+  }
+  const refreshProfilPage = () => {
+    window.location.reload(false)
+  }
+  const logout = () => {
+    localStorage.clear();
+  }
+  return (
+    <Styles>
+      <div className="container mt-5 d-flex justify-content-center liste">
+        <div className="card p-3">
+          <div className="d-flex align-items-center">
+            <div className="image">
+              <img
+                src={User.image ? User.image : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                className="rounded"
+                width="155"
+                alt="Profil"
+              />
+            </div>
+            <div className="row">
+              <div>
+                <h4 className="mb-0 mt-0" style={{ textAlign: "center", margin: "20px", padding: "20px" }}>
                   {User.prénom} {User.nom}
                 </h4>
-                <span>{User.role}</span>
-                <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                {/* <span>{User.role}</span> */}
+              </div>
+              <div className="ml-3 w-100">
+                <div className="p-3 mt-3 bg-primary d-flex justify-content-end rounded text-white stats">
                   <div className="d-flex flex-column">
-                    <span className="articles">Age</span>
-                    <span className="number1">{User.age}</span>
+                    <span className="followers" style={{ fontSize: "1.2em" }}>Email</span>
+                    <span className="number2" style={{ fontSize: "1.3em" }}>{User.email}</span>
                   </div>
-                  <div className="d-flex flex-column">
-                    <span className="followers">Email</span>
-                    <span className="number2">{User.email}</span>
-                  </div>
-                  <div className="d-flex flex-column">
-                    <span className="rating">Téléphone</span>
-                    <span className="number3">0767532573</span>
+                  <div className="d-flex flex-column" style={{ marginLeft: "30px" }}>
+                    <span className="rating" style={{ fontSize: "1.2em" }}>Téléphone</span>
+                     <h2></h2>
+                     {/*<a href="tel:+33500000000"> */}
+                    <a className="number3" style={{ fontSize: "1.3em" }} href="tel:{User.numero}">{User.numero}</a>
                   </div>
                 </div>
                 <div className="button mt-2 d-flex flex-row align-items-center">
-                  <button className="btn btn-sm btn-outline-primary w-100">
-                    Chat
-                  </button>
-                  <button  onClick={logout} className="btn btn-sm btn-primary w-100 ml-2">
-                      Logout
-
+                  <button onClick={logout} className="btn btn-danger btn-sm px-3 "
+                    style={{ margin: "10px", padding: "10px" }}>
+                    Déconnection
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      );
+      </div>
+      <input type="file" onChange={addProfilimage} />
+      <button
+        onClick={() => {
+          addImage(); refreshProfilPage()
+        }}
+      >changer mon image</button>
+      <Liste />
+    </Styles>
+  );
 }

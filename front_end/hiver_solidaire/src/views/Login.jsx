@@ -1,5 +1,7 @@
 import React from "react";
-import {useHistory} from "react-router-dom"
+import '../App.css';
+import { Styles } from '../components/styles';
+import { useHistory } from "react-router-dom"
 import { Form, Input, Button } from "antd";
 
 const layout = {
@@ -28,57 +30,61 @@ export default function Login() {
       if (response) {
         const tokenObj = await response.json();
         localStorage.setItem('token', tokenObj.token);
-        history.push('/agenda')
+        history.push('/profile')
       }
     } catch (err) {
       console.error(err)
     }
   };
 
-
   return (
-    <Form
-      {...layout}
-      name="basic"
-      onFinish={onFinish}
-    >
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Entrez votre email!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
 
-      <Form.Item
-        label="Mot de Passe"
-        name="motDePasse"
-        rules={[
-          {
-            required: true,
-            message: 'Entrez votre mot de passe!',
-          },
-        ]}
+    <Styles>
+      <Form
+        {...layout}
+        name="basic"
+        onFinish={onFinish}
       >
-        <Input.Password />
-      </Form.Item>
+        <h2>Connection</h2>
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: 'Entrez votre email!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Se connecter
-        </Button>
+        <Form.Item
+          label="Mot de Passe"
+          name="motDePasse"
+          rules={[
+            {
+              required: true,
+              message: 'Entrez votre mot de passe!',
+            },
+          ]}
+        >
+          <Input.Password />
+        </Form.Item>
 
-      </Form.Item>
-    </Form>
+        <Form.Item
+          wrapperCol={{
+            offset: 8,
+            span: 16,
+          }}
+        >
+          <Button type="primary" htmlType="submit">
+            Connection
+          </Button>
+        </Form.Item>
+      </Form>
+
+    </Styles>
+
   )
 }

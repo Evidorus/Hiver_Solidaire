@@ -8,6 +8,14 @@ const PlanningModel = require('./models/Planning');
 const UserModel = require('./models/User');
 const authRoutes = require('./routes/auth');
 const checkAuth = require('./middlewares/auth.middlewares')
+const path = require("path");
+
+
+const multer  = require('multer');
+const upload = multer({ dest:'public'});
+const fs = require("fs");
+app.use(express.static('public'));
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -24,8 +32,19 @@ app.listen(port, () => {
 })
 
 app.get('/planning', async (req, res) => {
+    let limit = 7;
+    let page = 0;
+    if (req.query.limit) {
+        if (!parseInt(req.query.limit) || parseInt(req.query.limit) < 1) {
+            res.status(400).json({message: "Limit must be a positive number"});
+        }
+        limit = req.query.limit;
+    }
+    if (req.query.page) {
+        page = req.query.page
+    }
     try {
-        const planning = await PlanningModel.find({}).populate('bénévole').lean().exec()
+        const planning = await PlanningModel.find({}).populate('bénévole').skip(parseInt(page * limit)).limit(parseInt(limit)).lean().exec()
         res.json(planning)
     } catch (error) {
         console.log(error)
@@ -68,11 +87,9 @@ app.get('/users', async (req, res) => {
 app.get('/profil', checkAuth, async (req, res) => {
     try {
         const tokenUser = req.token
-        console.log(tokenUser)
         const user = await UserModel.findOne({
             _id: tokenUser._id
         })
-        console.log(user)
         res.json(user)
     } catch (error) {
         console.log(error)
@@ -91,30 +108,25 @@ app.get('/liste', checkAuth, async (req, res) => {
     }
 })
 
-app.get('/profil',checkAuth, async (req, res) => {
+app.delete('/removeliste', checkAuth, async (req, res) => {
     try{
-        const tokenUser = req.token
-        const user = await UserModel.findOne({
-            _id: tokenUser._id
-        })
-        res.json(user)
-    }catch(error){
+        console.log(req.body)
+        await PlanningModel.deleteOne(req.body)
+        res.send(`Votre action du ${req.body.date} pour l'activité ${req.body.activité} a bien était supprimer`)
+    } catch(error){
         console.log(error)
     }
-})
-
-app.get('/liste',checkAuth, async (req, res) => {
-    try{
-        const tokenUser = req.token
-        const user = await PlanningModel.find({
-            bénévole: tokenUser._id
-        })
-        res.json(user)
-    }catch(error){
-        console.log(error)
-    }
-})
+}) 
 
 
+app.post('/profilPicture',upload.single('image'), checkAuth, (req, res) => {
+    console.log(req.token);
+    const user = req.token;
+    console.log(req.file);
+    fs.renameSync(req.file.path, path.join(req.file.destination, req.file.originalname));
+    user.image = `http://localhost:8000/${req.file.originalname}`;
+    user.save();
+    res.send(user.image);
+  });
 
-
+  

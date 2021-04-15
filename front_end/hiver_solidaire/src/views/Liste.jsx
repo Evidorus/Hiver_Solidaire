@@ -1,32 +1,12 @@
 import React, { useEffect, useState } from "react";
-import moment from 'moment'
-
+import '../App.css';
+import { Styles } from '../components/styles';
+import moment from 'moment';
 export default function Liste() {
-  const [userListe, setUserListe] = useState([
-    {
-      date:"01-04-2021",
-      activité: "sport"
-    },
-    {
-      date:"03-04-2021",
-      activité: "sport"
-    },
-    {
-      date:"04-04-2021",
-      activité: "sport"
-    },
-    {
-      date:"05-04-2021",
-      activité: "sport"
-    },
-  ]);
-
-
-  
-
-
-{/* useEffect(() => {
-    fetch("http://localhost:8000/liste", {
+  const [userListe, setUserListe] = useState([]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/liste", {
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -35,52 +15,46 @@ export default function Liste() {
       .then((response) => {
         setUserListe(response);
       });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
- */}  
-
-  {/*debut de ma fonction */}
-  
-
-  const handleDelete = (index) => {  
-    let newArray = [];
-     // console.log(index)
-     // console.log(userListe)
-        newArray = userListe.filter((user, indexEl) =>!(indexEl == index));
-       // console.log(newArray);
-        setUserListe(newArray)
-  //  alert('etes-vous sur de supprimer  :' +setUserListe([]));
- };
-
-   {/*fin de ma fonction */}
-
+  const annulation = (action) => {
+    console.log(action.activité)
+    fetch("http://localhost:8000/removeliste", {
+      method: "DELETE",
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(action),
+    })
+    .then((response) => {response.json()})
+    .then((response) => {
+      console.log(response)
+    })
+  }
   return (
-    <div className="container">
-      <h1 style={{ textAlign: "center", width: "50%" }}>Liste et dates des activités </h1>
-      {userListe.map((response, index) => {
-        return (
-          < >
-            <div className="card">
-              <h5 className="card-header">Activité</h5>
-              <div className="card-body">
-                <h5 className="card-title">{moment(response.date).format("DD MMM YY")}</h5>
-                <p className="card-text">
-                  {response.activité}
-                </p>
-                {/* <button className="btn btn-primary">
+    <Styles>
+      <div className="container  mt-5 d-flex justify-content-center liste">
+        <h3 style={{ textAlign: "center", margin: '30px', color: 'white' }}>Récapitulatif des choix</h3>
+        {userListe.map((response) => {
+          return (
+            < >
+              <div className="card">
+                <h4 className="card-header">{moment(response.date).format("DD MMM YY")}</h4>
+                <div className="card-body">
+                  <h6 className="card-text">
+                    {response.activité}
+                  </h6>
+                  <button onClick={() => annulation(response)} className="btn btn-primary">
                   Annulation
-                 
-                </button> 
-                {/*debut de ma fonction */}
-                
-                   <button style={{ padding: 8 }}  onClick={()=> handleDelete(index)} className="btn btn-primary">delete</button>
-
-                
-                {/*fin de ma fonction */}
+                </button>
+                </div>
               </div>
-            </div>
-          </>
-        );
-      })}
-    </div>
+            </>
+          );
+        })}
+      </div>
+    </Styles>
   );
 }
