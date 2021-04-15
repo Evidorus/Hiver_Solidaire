@@ -9,10 +9,14 @@ import moment from 'moment';
 function Agenda() {
   const [planning, setPlanning] = useState([]);
   const [activité, setActivity] = useState();
+  const [semaineStart, setSemaineStart] = useState([])
+  const [semaineEnd, setSemaineEnd] = useState([])
   const [nom, setNom] = useState();
   const [prénom, setPrénom] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(0);
+  console.log(semaineStart)
+  console.log(semaineEnd)
 
   useEffect(() => {
     RemovePlanning();
@@ -30,6 +34,8 @@ function Agenda() {
         setNom(response);
         setPrénom(response);
         setNumberOfPage(Math.floor(response.count / 35));
+        setSemaineStart(moment(response[0].date).format("DD MMM"))
+        setSemaineEnd(moment(response[30].date).format("DD MMM"))
       });
   };
 
@@ -131,25 +137,26 @@ function Agenda() {
           <div className="container">
             <div className="table-responsive">
               <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item">
+              <nav aria-label="Page navigation example" className="row">
+                <ul className="pagination col">
+                  <li className="page-item ">
                     <button
-                      class="page-link"
+                      className="page-link"
                       aria-label="Previous"
                       onClick={previousPage}
                     >
-                      <span aria-hidden="true">&laquo;</span>
+                      <span aria-hidden="false">&laquo; Semaine précédente</span>
                     </button>
                   </li>
+                  <p>Semaine du {semaineStart} au {semaineEnd}</p>
                   {paginationItem()}
-                  <li class="page-item">
+                  <li className="page-item">
                     <button
-                      class="page-link"
+                      className="page-link"
                       aria-label="Next"
                       onClick={nextPage}
                     >
-                      <span aria-hidden="true">&raquo;</span>
+                      <span aria-hidden="true">Semaine suivante &raquo;</span>
                     </button>
                   </li>
                 </ul>
