@@ -113,7 +113,7 @@ function Agenda() {
         return element.activité === activité && element.date === date;
       })._id;
       return (
-        <div style={{ backgroundColor: { color } }}>
+        <div>
           <button
             type="button"
             className="btn btn-danger btn-sm px-3 "
