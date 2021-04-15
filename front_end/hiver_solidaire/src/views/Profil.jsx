@@ -78,7 +78,7 @@ const logout = () => {
                 </div>
                 <div className="d-flex flex-column">
                   <span className="rating">Téléphone</span>
-                  <span className="number3">{User.numero}</span>
+                  <span className="number3"><a className="number3" style={{ fontSize: "1.3em" }} href="tel:{User.numero}">{User.numero}</a></span>
                 </div>
               </div>
               <div className="button mt-2 d-flex flex-row align-items-center">
