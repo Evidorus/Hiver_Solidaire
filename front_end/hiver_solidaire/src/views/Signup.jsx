@@ -32,7 +32,8 @@ export default function Signup() {
       if (response) {
         const tokenObj = await response.json();
         localStorage.setItem("token", tokenObj.token);
-        history.push("/login");
+        history.push("/welcome");
+        
       }
     } catch (err) {
       console.log(err, 'marche po');
@@ -121,12 +122,12 @@ export default function Signup() {
         </Form.Item>
 
         <Form.Item
-          name="age"
-          label="Age"
+          name="numero"
+          label="Numéro"
           rules={[
             {
               required: true,
-              message: "Entrez votre age",
+              message: "Entrez votre numéro",
             },
           ]}
         >

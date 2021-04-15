@@ -5,6 +5,8 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Profil from '../views/Profil';
 import Signup from '../views/Signup';
+import Welcome from '../views/Welcome';
+
 
 
 function Navbar() {
@@ -51,6 +53,7 @@ function Navbar() {
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profil} />
+                <Route path="/welcome" component={Welcome} />
             </Switch>
         </BrowserRouter>
 
