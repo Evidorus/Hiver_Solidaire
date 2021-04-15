@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Redirect } from 'react-router-dom';
 import "../App.css";
 import { Styles } from '../components/styles';
 import Liste from "./Liste";
@@ -21,31 +22,32 @@ export default function Profil() {
 
   const addImage = () => {
     const formData = new FormData();
-     formData.append('image',image);
-     fetch("http://localhost:8000/profilPicture",{
-        headers:{
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-         method:"POST",
-         body:formData,
-     })
+    formData.append('image', image);
+    fetch("http://localhost:8000/profilPicture", {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      method: "POST",
+      body: formData,
+    })
   };
 
   const addProfilimage = (event) => {
     setImage(event.target.files[0])
-}
-const refreshProfilPage = () => {
-  window.location.reload(false)
-}
+  }
+  const refreshProfilPage = () => {
+    window.location.reload(false)
+  }
 
-const logout = () => {
-  localStorage.clear();
-}
+  const logout = () => {
+    localStorage.clear();
+    return (<Redirect push to="/" />)
+  }
 
   return (
     <Styles>
       <div className="container mt-5 d-flex justify-content-center liste">
-        <div className="card p-8">
+        <div className="card p-3">
           <div className="d-flex align-items-center">
             <div className="image">
               <img
@@ -55,46 +57,46 @@ const logout = () => {
                 alt="Profil"
               />
             </div>
-            <div className="ml-3 w-100">
-              <h4 className="mb-0 mt-0" style={{ textAlign: "center", margin: "20px", padding: "20px" }}>
-                {User.prénom} {User.nom}
-              </h4>
-              <span>{User.role}</span>
-              <div className="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                <div className="d-flex flex-column">
-                  <span className="articles">Age</span>
-                  <span className="number1">{User.age}</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="followers">Email</span>
-                  <span className="number2">{User.email}</span>
-                </div>
-                <div className="d-flex flex-column">
-                  <span className="rating">Téléphone</span>
-                  <span className="number3">{User.numero}</span>
-                </div>
+            <div className="row">
+              <div>
+
+                <h4 className="mb-0 mt-0" style={{ textAlign: "center", margin: "20px", padding: "20px" }}>
+                  {User.prénom} {User.nom}
+                </h4>
+                {/* <span>{User.role}</span> */}
               </div>
-              <div className="button mt-2 d-flex flex-row align-items-center">
-                <button className="btn btn-sm btn-outline-primary w-100">
-                  Chat
+
+              <div className="ml-3 w-100">
+                <div className="p-3 mt-3 bg-primary d-flex justify-content-end rounded text-white stats">
+                  <div className="d-flex flex-column">
+                    <span className="followers" style={{ fontSize: "1.2em" }}>Email</span>
+                    <span className="number2" style={{ fontSize: "1.3em" }}>{User.email}</span>
+                  </div>
+                  <div className="d-flex flex-column" style={{ marginLeft: "30px" }}>
+                    <span className="rating" style={{ fontSize: "1.2em" }}>Téléphone</span>
+                    <span className="number3" style={{ fontSize: "1.3em" }}>{User.numero}</span>
+                  </div>
+                </div>
+
+                <div className="button mt-2 d-flex flex-row align-items-center">
+                  <button onClick={logout} className="btn btn-danger btn-sm px-3 "
+                    style={{ margin: "10px", padding: "10px" }}>
+                    Déconnection
                   </button>
-                <button onClick={logout} className="btn btn-sm btn-primary w-100 ml-2">
-                  Se déconnecter
-                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <Liste />
-
       </div>
       <input type="file" onChange={addProfilimage} />
-      <button 
-       onClick={() => {
-       addImage(); refreshProfilPage()
-      }}
+      <button
+        onClick={() => {
+          addImage(); refreshProfilPage()
+        }}
       >changer mon image</button>
+      <Liste />
     </Styles>
   );
 }
