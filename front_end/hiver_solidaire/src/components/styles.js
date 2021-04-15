@@ -48,9 +48,28 @@ button{
 
 .nomAgenda{
     text-align: center;
-    font-family: 'Leckerli One', cursive;
-    color :  #f69d3c;
+    font-size : 1.3em;
 }
+
+// #tabledejeuner{
+//     color :  #B53471;
+// }
+
+// #tablemidi{
+//     color : #009432;
+// }
+
+// #tablesouper{
+//     color : blue;
+// }
+
+// #tableapressouper{
+//     color :#EA2027;
+// }
+
+// #tablenuit{
+//     color : #F79F1F
+// }
 
 #rowHome{
     border-radius : 5px;
