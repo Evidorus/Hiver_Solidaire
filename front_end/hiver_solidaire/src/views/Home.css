@@ -22,6 +22,8 @@
     
    
 }
+
+
 /* .icon-container  .icon {
       display: table-cell; 
       vertical-align: middle;
@@ -29,6 +31,43 @@
       font-size: 21px;
       color: white;
     } */
+
+    
+/*       
+      return (
+    <div className="container">
+      <h1 style={{ textAlign: "center", width: "50%" }}>Liste et dates des activités </h1>
+      {userListe.map((response, index) => {
+        return (
+          < >
+            <div className="card">
+              <h5 className="card-header">Activité</h5>
+              <div className="card-body">
+                <h5 className="card-title">{moment(response.date).format("DD MMM YY")}</h5>
+                <p className="card-text">
+                  {response.activité}
+                </p> */
+                /* <button className="btn btn-primary">
+                  Annulation
+                 
+                </button> 
+                
+                
+                /* <button style={{ padding: 8 }}  onClick={()=> handleDelete(index)} className="btn btn-primary">delete</button>
+
+                
+              
+              /* </div>
+            </div>
+          </>
+        );
+      })}
+    </div>
+  );
+}
+
+      
+      
 
     
 
