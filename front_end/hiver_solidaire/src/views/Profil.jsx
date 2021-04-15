@@ -8,7 +8,8 @@ export default function Profil() {
   const [image, setImage] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8000/profil", {
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/profil", {
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -17,18 +18,24 @@ export default function Profil() {
       .then((response) => {
         setUser(response);
       });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const addImage = () => {
     const formData = new FormData();
      formData.append('image',image);
-     fetch("http://localhost:8000/profilPicture",{
+     const interval = setInterval(() => {
+      fetch("http://localhost:8000/profilPicture",{
         headers:{
           authorization: "Bearer " + localStorage.getItem("token"),
         },
          method:"POST",
          body:formData,
      })
+    }, 1000);
+    return () => clearInterval(interval);
+     
   };
 
   const addProfilimage = (event) => {
@@ -85,9 +92,6 @@ const logout = () => {
             </div>
           </div>
         </div>
-
-        <Liste />
-
       </div>
       <input type="file" onChange={addProfilimage} />
       <button 
@@ -95,6 +99,9 @@ const logout = () => {
        addImage(); refreshProfilPage()
       }}
       >changer mon image</button>
+
+    <Liste />
+
     </Styles>
   );
 }

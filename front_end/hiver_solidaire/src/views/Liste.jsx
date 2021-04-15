@@ -8,7 +8,8 @@ export default function Liste() {
 
 
   useEffect(() => {
-    fetch("http://localhost:8000/liste", {
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/liste", {
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -17,6 +18,8 @@ export default function Liste() {
       .then((response) => {
         setUserListe(response);
       });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const annulation = (action) => {
