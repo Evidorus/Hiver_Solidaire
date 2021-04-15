@@ -31,10 +31,13 @@ function Navbar() {
                             </li>
                             <li className="nav-item">
                             <Link to="/profile" className="nav-link active" >Profile</Link>
+                                
                             </li>
                             <li className="nav-item">
+                                
                             <Link to="/liste" className="nav-link active" > Recapitulatif </Link>
                             </li>
+                           
                         </ul>
                     </div>
                 </div>

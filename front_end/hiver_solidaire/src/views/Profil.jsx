@@ -4,6 +4,14 @@ import "../App.css";
 export default function Profil() {
   const [User, setUser] = useState([]);
 
+  {/*const logout = () => {
+    localStorage.clear();
+  } 
+*/}
+ const logout = () => {
+  localStorage.clear();
+ }
+
   useEffect(() => {
     fetch("http://localhost:8000/profil", {
         headers: {
@@ -51,8 +59,9 @@ export default function Profil() {
                   <button className="btn btn-sm btn-outline-primary w-100">
                     Chat
                   </button>
-                  <button className="btn btn-sm btn-primary w-100 ml-2">
-                    Follow
+                  <button  onClick={logout} className="btn btn-sm btn-primary w-100 ml-2">
+                      Logout
+
                   </button>
                 </div>
               </div>
