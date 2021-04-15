@@ -6,6 +6,8 @@ import Login from '../views/Login';
 import Profil from '../views/Profil';
 import Signup from '../views/Signup';
 import Contact from '../views/Contact'
+import Welcome from '../views/Welcome';
+
 
 
 function Navbar() {
@@ -52,6 +54,7 @@ function Navbar() {
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profil} />
                 <Route path="/contact" component={Contact} />
+                <Route path="/welcome" component={Welcome} />
             </Switch>
         </BrowserRouter>
 
