@@ -137,22 +137,22 @@ function Agenda() {
           <div className="container">
             <div className="table-responsive">
               <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
-              <nav aria-label="Page navigation example" className="row">
-                <ul className="pagination col">
-                  <li className="page-item ">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination clearfix">
+                  <li className="page-item">
                     <button
-                      className="page-link"
+                      className="btn btn-danger float-left"
                       aria-label="Previous"
                       onClick={previousPage}
                     >
                       <span aria-hidden="false">&laquo; Semaine précédente</span>
                     </button>
                   </li>
-                  <p>Semaine du {semaineStart} au {semaineEnd}</p>
+                  <b style={{marginLeft: 20}}>Semaine du {semaineStart} au {semaineEnd}</b>
                   {paginationItem()}
                   <li className="page-item">
                     <button
-                      className="page-link"
+                      className="btn btn-danger float-right"
                       aria-label="Next"
                       onClick={nextPage}
                     >
