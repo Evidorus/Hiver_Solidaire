@@ -5,13 +5,12 @@ import Home from '../views/Home';
 import Login from '../views/Login';
 import Profil from '../views/Profil';
 import Signup from '../views/Signup';
+import Contact from '../views/Contact'
+import Welcome from '../views/Welcome';
+
 
 
 function Navbar() {
-
-    // const refreshPage = () => {
-    //     window.location.reload();
-    //   };
 
     return (
         <BrowserRouter>
@@ -39,7 +38,9 @@ function Navbar() {
                             <li className="nav-item">
                                 <Link to="/agenda" className="nav-link " >Agenda</Link>
                             </li>
-                           
+                            <li className="nav-item">
+                                <Link to="/contact" className="nav-link " >Contact</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -52,6 +53,8 @@ function Navbar() {
                 <Route path="/signup" component={Signup} />
                 <Route path="/login" component={Login} />
                 <Route path="/profile" component={Profil} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/welcome" component={Welcome} />
             </Switch>
         </BrowserRouter>
 

@@ -33,6 +33,11 @@ export default function Liste() {
       console.log(response)
     })
   }
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
   return (
     <Styles>
       <div className="container  mt-5 d-flex justify-content-center liste">
@@ -46,7 +51,7 @@ export default function Liste() {
                   <h6 className="card-text">
                     {response.activité}
                   </h6>
-                  <button onClick={() => annulation(response)} className="btn btn-primary">
+                  <button onClick={() => {annulation(response); refreshPage()}} className="btn btn-primary">
                   Annulation
                 </button>
                 </div>

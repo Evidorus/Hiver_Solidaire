@@ -42,6 +42,7 @@ export default function Profil() {
   }
   const logout = () => {
     localStorage.clear();
+    return (<Redirect push to="/" />)
   }
   return (
     <Styles>
@@ -71,9 +72,7 @@ export default function Profil() {
                   </div>
                   <div className="d-flex flex-column" style={{ marginLeft: "30px" }}>
                     <span className="rating" style={{ fontSize: "1.2em" }}>Téléphone</span>
-                     <h2></h2>
-                     {/*<a href="tel:+33500000000"> */}
-                    <a className="number3" style={{ fontSize: "1.3em" }} href="tel:{User.numero}">{User.numero}</a>
+                    <span className="number3" style={{ fontSize: "1.3em" }}><a className="number3" style={{ fontSize: "1.3em" }} href="tel:{User.numero}">{User.numero}</a></span>
                   </div>
                 </div>
                 <div className="button mt-2 d-flex flex-row align-items-center">
