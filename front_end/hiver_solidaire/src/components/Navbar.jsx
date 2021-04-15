@@ -9,6 +9,10 @@ import Signup from '../views/Signup';
 
 function Navbar() {
 
+    // const refreshPage = () => {
+    //     window.location.reload();
+    //   };
+
     return (
         <BrowserRouter>
             <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">

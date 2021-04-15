@@ -13,7 +13,7 @@ function Agenda() {
   const [prénom, setPrénom] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(0);
-  const [popupS, setPopupS] = useState(false);
+  const [color, setColor] = useState("black");
 
   useEffect(() => {
     RemovePlanning();
@@ -91,7 +91,7 @@ function Agenda() {
           <p className="nomAgenda">{benevole.prénom}</p>
           <Popup
             trigger={
-              <button className="btn btn-warning btn-sm px-3 rounded-circle ">Info</button>
+              <i className="fas fa-info-circle fa-lg"></i>
             }
             position="right center"
           >
@@ -109,17 +109,21 @@ function Agenda() {
         return element.activité === activité && element.date === date;
       })._id;
       return (
-        <button
-          type="button"
-          className="btn btn-danger btn-sm px-3 "
-          style={{ margin: "10px", padding: "10px" }}
-          onClick={() => {
-            AddActivity(activity);
-            refreshPage();
-          }}
-        >
-          S'inscrire
+        <div style={{ backgroundColor: { color } }}>
+          <button
+            type="button"
+            className="btn btn-danger btn-sm px-3 "
+            style={{ margin: "10px", padding: "10px" }}
+            onClick={() => {
+              AddActivity(activity);
+              refreshPage();
+            }}
+          >
+            S'inscrire
         </button>
+
+        </div>
+
       );
     }
   };

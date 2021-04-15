@@ -30,13 +30,12 @@ export default function Login() {
       if (response) {
         const tokenObj = await response.json();
         localStorage.setItem('token', tokenObj.token);
-        history.push('/agenda')
+        history.push('/profile')
       }
     } catch (err) {
       console.error(err)
     }
   };
-
 
   return (
 

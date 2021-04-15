@@ -9,27 +9,34 @@ export default function Profil() {
   const [image, setImage] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8000/profil", {
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        setUser(response);
-      });
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/profil", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setUser(response);
+        });
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   const addImage = () => {
     const formData = new FormData();
     formData.append('image', image);
-    fetch("http://localhost:8000/profilPicture", {
-      headers: {
-        authorization: "Bearer " + localStorage.getItem("token"),
-      },
-      method: "POST",
-      body: formData,
-    })
+    const interval = setInterval(() => {
+      fetch("http://localhost:8000/profilPicture", {
+        headers: {
+          authorization: "Bearer " + localStorage.getItem("token"),
+        },
+        method: "POST",
+        body: formData,
+      })
+    }, 1000);
+    return () => clearInterval(interval);
+
   };
 
   const addProfilimage = (event) => {
@@ -88,7 +95,6 @@ export default function Profil() {
             </div>
           </div>
         </div>
-
       </div>
       <input type="file" onChange={addProfilimage} />
       <button
@@ -96,7 +102,9 @@ export default function Profil() {
           addImage(); refreshProfilPage()
         }}
       >changer mon image</button>
+
       <Liste />
+
     </Styles>
   );
 }
