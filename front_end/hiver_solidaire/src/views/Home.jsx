@@ -3,8 +3,7 @@ import YoutubeEmbed from "../components/YoutubeEmbed";
 import "../App.css";
 import { Styles } from '../components/styles';
 import SocialIcons from '../components/SocialIcons';
-// import "./Home.css";
-// import { useEffect } from "react";
+
 
 function Home() {
 
@@ -56,16 +55,11 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <SocialIcons />
-                    </div>
+
                 </div>
             </div>
-
+            <SocialIcons />
         </Styles>
-
-
-
     )
 }
 

@@ -48,10 +48,8 @@ button{
 
 .nomAgenda{
     text-align: center;
-    font-family: 'Leckerli One', cursive;
-    color :  #f69d3c;
+    font-size : 1.3em;
 }
-
 #rowHome{
     border-radius : 5px;
     box-shadow : 0 8px 16px rgba(0,0,0,.2)
