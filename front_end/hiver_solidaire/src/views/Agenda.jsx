@@ -33,8 +33,8 @@ function Agenda() {
         setNom(response);
         setPrénom(response);
         setNumberOfPage(Math.floor(response.count / 35));
-        setSemaineStart(moment(response[0].date).format("DD MMM"))
-        setSemaineEnd(moment(response[30].date).format("DD MMM"))
+        setSemaineStart(moment(response[0].date).format("DD MMM YYYY"))
+        setSemaineEnd(moment(response[30].date).format("DD MMM YYYY"))
       });
   };
 
@@ -83,6 +83,8 @@ function Agenda() {
       );
     }
   };
+
+
 
   const ckeckPlanning = (date, activité) => {
     const benevole = planning.find((element) => {
@@ -139,31 +141,36 @@ function Agenda() {
         ) : (
           <div className="container liste">
             <div className="table-responsive">
-              <h2 style={{ margin: "20px" }}>Inscription aux différentes activités</h2>
-              <nav aria-label="Page navigation example">
-                <ul className="pagination clearfix">
-                  <li className="page-item">
-                    <button
-                      className="btn btn-danger float-left"
-                      aria-label="Previous"
-                      onClick={previousPage}
-                    >
-                      <span aria-hidden="false">&laquo; Semaine précédente</span>
-                    </button>
-                  </li>
-                  <b style={{ marginLeft: 20 }}>Semaine du {semaineStart} au {semaineEnd}</b>
+              <h2 style={{ margin: "5%" }}>Inscription aux différentes activités</h2>
+              <div className="row" style={{ margin: "1%" }} >
+                <div className="col col-md-4 m-auto">
+                  <button
+                    className="btn btn-danger "
+                    aria-label="Previous"
+                    onClick={previousPage}
+                  >
+                    <span aria-hidden="false">&laquo; Semaine précédente</span>
+                  </button>
+                </div>
+                <div className="col col-md-4 m-auto" style={{ textAlign: "center" }}>
+                  <b>Semaine du {semaineStart} au {semaineEnd}</b>
                   {paginationItem()}
-                  <li className="page-item">
-                    <button
-                      className="btn btn-danger float-right"
-                      aria-label="Next"
-                      onClick={nextPage}
-                    >
-                      <span aria-hidden="true">Semaine suivante &raquo;</span>
-                    </button>
-                  </li>
-                </ul>
-              </nav>
+                </div>
+
+                <div className="col col-md-4">
+                  <button
+                    className="btn btn-danger"
+                    aria-label="Next"
+                    onClick={nextPage}
+                  >
+                    <span aria-hidden="true">Semaine suivante &raquo;</span>
+                  </button>
+                </div>
+
+
+              </div>
+
+
 
               <div className="container d-flex">
                 <table className="table table-hover table-bordered align-middle " >
