@@ -14,7 +14,6 @@ async function createPlanning() {
         {
             nom: "Olicard ",
             prénom: "Fabien",
-            age: 24,
             email: "fabien.oli@live.fr",
             motDePasse: "fafafafa",
             role: "B",
@@ -23,7 +22,6 @@ async function createPlanning() {
         {
             nom: "Jean",
             prénom: "Bernard",
-            age: 56,
             email: "bernard.jean@live.fr",
             motDePasse: "bebebebe",
             role: "A",
