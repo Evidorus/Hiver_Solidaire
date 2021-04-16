@@ -95,7 +95,7 @@ function Agenda() {
           <p className="nomAgenda">{benevole.prénom}</p>
           <Popup
             trigger={
-              <i className="fas fa-info-circle fa-lg"></i>
+              <i className="fas fa-info-circle fa-lg" style={{ color: '#f69d3c' }}></i>
             }
             position="right center"
           >
