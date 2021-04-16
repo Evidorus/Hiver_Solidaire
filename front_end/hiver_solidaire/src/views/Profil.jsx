@@ -42,7 +42,6 @@ export default function Profil() {
   }
   const logout = () => {
     localStorage.clear();
-    return (<Redirect push to="/" />)
   }
   return (
     <Styles>

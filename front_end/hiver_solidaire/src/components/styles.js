@@ -50,27 +50,6 @@ button{
     text-align: center;
     font-size : 1.3em;
 }
-
-// #tabledejeuner{
-//     color :  #B53471;
-// }
-
-// #tablemidi{
-//     color : #009432;
-// }
-
-// #tablesouper{
-//     color : blue;
-// }
-
-// #tableapressouper{
-//     color :#EA2027;
-// }
-
-// #tablenuit{
-//     color : #F79F1F
-// }
-
 #rowHome{
     border-radius : 5px;
     box-shadow : 0 8px 16px rgba(0,0,0,.2)
