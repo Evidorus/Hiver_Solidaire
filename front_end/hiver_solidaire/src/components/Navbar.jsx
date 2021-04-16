@@ -16,7 +16,7 @@ function Navbar() {
         <BrowserRouter>
             <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
                 <div className="container">
-                    <Link to="/" classNameName="navbar-brand">
+                    <Link to="/" className="navbar-brand">
                         <img style={{ width: "20%" }} src="./imgHS/logoHS.png" alt="Hiver Solidaire" /></Link>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
