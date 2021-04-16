@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import "../App.css";
 import { Styles } from '../components/styles';
 import Liste from "./Liste";
+
+
 export default function Profil() {
   const [User, setUser] = useState([]);
   const [image, setImage] = useState({});
+
+  let history = useHistory()
+
   useEffect(() => {
     const interval = setInterval(() => {
       fetch("http://localhost:8000/profil", {
@@ -23,7 +28,6 @@ export default function Profil() {
   const addImage = () => {
     const formData = new FormData();
     formData.append('image', image);
-    const interval = setInterval(() => {
       fetch("http://localhost:8000/profilPicture", {
         headers: {
           authorization: "Bearer " + localStorage.getItem("token"),
@@ -31,8 +35,6 @@ export default function Profil() {
         method: "POST",
         body: formData,
       })
-    }, 1000);
-    return () => clearInterval(interval);
   };
   const addProfilimage = (event) => {
     setImage(event.target.files[0])
@@ -42,7 +44,7 @@ export default function Profil() {
   }
   const logout = () => {
     localStorage.clear();
-    return (<Redirect push to="/" />)
+    history.push('/login')
   }
   return (
     <Styles>
@@ -62,7 +64,6 @@ export default function Profil() {
                 <h4 className="mb-0 mt-0" style={{ textAlign: "center", margin: "20px", padding: "20px" }}>
                   {User.prénom} {User.nom}
                 </h4>
-                {/* <span>{User.role}</span> */}
               </div>
               <div className="ml-3 w-100">
                 <div className="p-3 mt-3 bg-primary d-flex justify-content-end rounded text-white stats">
