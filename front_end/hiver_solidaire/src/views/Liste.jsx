@@ -5,7 +5,6 @@ import moment from 'moment';
 export default function Liste() {
   const [userListe, setUserListe] = useState([]);
   useEffect(() => {
-    const interval = setInterval(() => {
       fetch("http://localhost:8000/liste", {
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
@@ -15,8 +14,6 @@ export default function Liste() {
       .then((response) => {
         setUserListe(response);
       });
-    }, 1000);
-    return () => clearInterval(interval);
   }, []);
   const annulation = (action) => {
     console.log(action.activité)
