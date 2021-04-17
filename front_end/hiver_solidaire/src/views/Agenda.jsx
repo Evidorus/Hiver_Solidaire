@@ -5,6 +5,9 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import moment from 'moment';
+import { Modal } from 'antd';
+
+
 
 function Agenda() {
   const [planning, setPlanning] = useState([]);
@@ -15,6 +18,10 @@ function Agenda() {
   const [prénom, setPrénom] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(0);
+
+  // const du popup confirmation : A voir : 1/insérer le nom activité + date -2/ modifier le fond lors de l'affichage
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
 
 
   useEffect(() => {
@@ -58,10 +65,6 @@ function Agenda() {
       });
   };
 
-  const refreshPage = () => {
-    window.location.reload(false);
-  };
-
   const previousPage = () => {
     if (page >= 0) {
       setPage(page - 1);
@@ -84,6 +87,25 @@ function Agenda() {
     }
   };
 
+
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
+  // fonctions du popup confirmation
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+    refreshPage()
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  // ------------------------------
 
 
   const ckeckPlanning = (date, activité) => {
@@ -122,12 +144,18 @@ function Agenda() {
             style={{ margin: "10px", padding: "10px" }}
             onClick={() => {
               AddActivity(activity);
-              refreshPage();
+              showModal();
             }}
           >
             S'inscrire
         </button>
 
+          {/*  popup  ... insertion de l'activité .. "passer la nuit" est par défaut!?*/}
+          <Modal title="Veuillez confirmer votre inscription " visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+            <p>{activité}</p>
+            <p style={{ fontWeight: "bold", color: "red" }}>Vous retrouverez le récapitulatif de vos choix sur la page de votre Profil</p>
+          </Modal>
+          {/*  ---------------- */}
         </div>
 
       );
@@ -166,11 +194,7 @@ function Agenda() {
                     <span aria-hidden="true">Semaine suivante &raquo;</span>
                   </button>
                 </div>
-
-
               </div>
-
-
 
               <div className="container d-flex">
                 <table className="table table-hover table-bordered align-middle " >

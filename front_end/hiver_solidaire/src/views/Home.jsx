@@ -10,7 +10,7 @@ function Home() {
     return (
         <Styles>
             <div className="container" >
-                <div className="row p-3 border bg-light " id='rowHome'>
+                <div className="row p-3 " id='rowHome'>
                     <h1 style={{ textAlign: "center", padding: "30px" }}>Hiver Solidaire</h1>
                     <div className="col-sm-8">
                         <YoutubeEmbed embedId="QLO7-CupocE" />
@@ -49,7 +49,7 @@ function Home() {
                 <div >
                     <div className="row g-2">
                         <div className="col-12">
-                            <div className="p-3 border bg-light" id='rowHome'>
+                            <div className="p-3" id='rowHome'>
                                 <h5>Avec le soutien de la Fondation Notre Dame.</h5>
                                 <img style={{ width: 400, heigth: 200 }} src="\imgHS\Logo-Fondation-Notre-Dame.png" />
                             </div>

@@ -18,8 +18,8 @@ form{
     flex-direction : column;
     width : 70%;
     height : auto;
-    margin : 50px auto;
-    border : 1px solid white;
+    margin : 10px auto;
+    // border : 1px solid white;
     border-radius : 5px;
     box-shadow : 0 8px 16px rgba(0,0,0,.3)
 }
@@ -36,6 +36,15 @@ button{
     background-color : #37628d;
 }
 
+#inputimage{
+    margin-top : 6%;
+    border : none;
+    outline : none;
+    font-size : 14px;
+    border-radius : 4px;
+    background-color :  #f69d3c;
+}
+
 .liste{
     display : flex;
     flex-direction : column;
@@ -43,7 +52,7 @@ button{
     height : auto;
     border : 1px solid white;
     border-radius : 5px;
-    box-shadow : 0 8px 16px rgba(0,0,0,.3)
+    box-shadow : 0 8px 16px rgba(0,0,0,.3);
 }
 
 .nomAgenda{
@@ -52,7 +61,7 @@ button{
 }
 #rowHome{
     border-radius : 5px;
-    box-shadow : 0 8px 16px rgba(0,0,0,.2)
+    box-shadow : 0 8px 16px rgba(0,0,0,.1)
 }
 
 #h2Home{
