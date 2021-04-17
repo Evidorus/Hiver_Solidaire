@@ -2,8 +2,7 @@ import React from "react";
 import '../App.css';
 import { Styles } from '../components/styles';
 import SocialIcons from '../components/SocialIcons';
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
-import Agenda from './Agenda';
+
 
 
 export default function Welcome() {

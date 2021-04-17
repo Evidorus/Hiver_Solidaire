@@ -33,13 +33,10 @@ min-height : 100vh;
 }
 
 h1,
-h2,
-h3,
-#thcreneaux{
+h2{
     font-family: 'Leckerli One', cursive;
 }
 
-h3,
 #footerbar{
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
     border-radius : 5px;

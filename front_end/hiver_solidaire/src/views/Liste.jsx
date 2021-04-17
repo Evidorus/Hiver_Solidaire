@@ -60,31 +60,37 @@ export default function Liste() {
 
   return (
     <Styles>
-      <div className="container  mt-5 d-flex justify-content-center liste">
-        <h3 style={{ textAlign: "center", margin: '30px', color: 'white' }}>Récapitulatif des choix</h3>
-        {userListe.map((response) => {
-          return (
-            < >
-              <div className="card">
-                <h4 className="card-header">{moment(response.date).format("DD MMM YY")}</h4>
-                <div className="card-body">
-                  <h6 className="card-text">
-                    {response.activité}
-                  </h6>
-                  <button onClick={() => { annulation(response); showModal() }} className="btn btn-primary">
-                    Annulation
-                </button>
-                  {/*  popup  annulation*/}
-                  <Modal title="Confirmation " visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                    <p style={{ fontWeight: "bold", color: "red" }}>Veuillez confirmer votre annulation</p>
-                  </Modal>
-                  {/*  ---------------- */}
+      <div className="container">
+        <div className="row ">
+          <h3 style={{ textAlign: "center", margin: '30px', color: '#f69d3c' }}>Récapitulatif des choix</h3>
+        </div>
 
+        <div className="row mx-auto" >
+          {userListe.map((response) => {
+            return (
+              < >
+                <div className="card ">
+                  <h4 className="card-header">{moment(response.date).format("DD MMM YY")}</h4>
+                  <div className="card-body">
+                    <h6 className="card-text">
+                      {response.activité}
+                    </h6>
+                    <button onClick={() => { annulation(response); showModal() }} className="btn btn-danger mx-auto">
+                      Annulation
+                </button>
+                    {/*  popup  annulation*/}
+                    <Modal title="Confirmation " visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                      <p style={{ fontWeight: "bold", color: "red" }}>Veuillez confirmer votre annulation</p>
+                    </Modal>
+                    {/*  ---------------- */}
+
+                  </div>
                 </div>
-              </div>
-            </>
-          );
-        })}
+              </>
+            );
+          })}
+        </div>
+
       </div>
 
     </Styles>
