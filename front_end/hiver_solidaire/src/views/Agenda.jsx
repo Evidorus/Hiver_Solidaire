@@ -10,13 +10,14 @@ import { Modal, Spin, Alert } from 'antd';
 
 function Agenda() {
   const [planning, setPlanning] = useState([]);
-  const [activité, setActivity] = useState();
+  // const [activité, setActivity] = useState();
   const [semaineStart, setSemaineStart] = useState([])
   const [semaineEnd, setSemaineEnd] = useState([])
   const [nom, setNom] = useState();
   const [prénom, setPrénom] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(0);
+  const [connected, setConnected] = useState(false)
 
   // const du popup confirmation : A voir : 1/insérer le nom activité + date -2/ modifier le fond lors de l'affichage
   const [visible, setVisible] = useState(false);
@@ -37,12 +38,13 @@ function Agenda() {
       .then((response) => {
         console.log(response);
         setPlanning(response);
-        setActivity(response);
+        // setActivity(response);
         setNom(response);
         setPrénom(response);
         setNumberOfPage(Math.floor(response.count / 35));
         setSemaineStart(moment(response[0].date).format("DD MMM YYYY"))
         setSemaineEnd(moment(response[30].date).format("DD MMM YYYY"))
+        setConnected(localStorage.getItem("token"))
       });
   };
 
