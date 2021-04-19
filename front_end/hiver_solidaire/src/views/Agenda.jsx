@@ -5,8 +5,7 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import moment from 'moment';
-import { Modal } from 'antd';
-
+import { Modal, Spin, Alert } from 'antd';
 
 
 function Agenda() {
@@ -20,7 +19,9 @@ function Agenda() {
   const [page, setPage] = useState(0);
 
   // const du popup confirmation : A voir : 1/insérer le nom activité + date -2/ modifier le fond lors de l'affichage
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Vous retrouverez votre choix de créneaux dans votre page Profil");
 
 
 
@@ -65,6 +66,10 @@ function Agenda() {
       });
   };
 
+  const refreshPage = () => {
+    window.location.reload(false);
+  };
+
   const previousPage = () => {
     if (page >= 0) {
       setPage(page - 1);
@@ -88,22 +93,18 @@ function Agenda() {
   };
 
 
-  const refreshPage = () => {
-    window.location.reload(false);
-  };
-
   // fonctions du popup confirmation
   const showModal = () => {
-    setIsModalVisible(true);
+    setVisible(true);
   };
 
   const handleOk = () => {
-    setIsModalVisible(false);
-    refreshPage()
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
+    setModalText();
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
   };
   // ------------------------------
 
@@ -150,10 +151,16 @@ function Agenda() {
             S'inscrire
         </button>
 
-          {/*  popup  ... insertion de l'activité .. "passer la nuit" est par défaut!?*/}
-          <Modal title="Veuillez confirmer votre inscription " visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-            <p>{activité}</p>
-            <p style={{ fontWeight: "bold", color: "red" }}>Vous retrouverez le récapitulatif de vos choix sur la page de votre Profil</p>
+          {/*  confirmation */}
+          <Modal
+            title="Validation de l'inscription"
+            visible={visible}
+            footer={null}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={refreshPage}
+          >
+            <p>{modalText}</p>
           </Modal>
           {/*  ---------------- */}
         </div>
@@ -165,7 +172,15 @@ function Agenda() {
     <BrowserRouter>
       <Styles>
         {planning.length === 0 ? (
-          <p>loading</p>
+          <Spin tip="Loading...">
+            <Alert
+              message="Le planning est réservé aux bénévoles inscrits. Pour y accéder, vous devez vous inscrire sur le site ou vous connecter"
+              description="Page en cours de téléchargement"
+              type="info"
+              style={{ textAlign: "center", padding: "20%" }}
+            />
+          </Spin>
+
         ) : (
           <div className="container liste">
             <div className="table-responsive">
@@ -194,7 +209,11 @@ function Agenda() {
                     <span aria-hidden="true">Semaine suivante &raquo;</span>
                   </button>
                 </div>
+
+
               </div>
+
+
 
               <div className="container d-flex">
                 <table className="table table-hover table-bordered align-middle " >
@@ -219,7 +238,7 @@ function Agenda() {
                   <tbody>
                     <tr >
                       <th scope="row" id="tabledejeuner">
-                        <p><b>7h à 8h</b></p>Fournir et partager le petit déjeuner
+                        <p><b>7h à 8h</b></p>Préparer et partager le petit déjeuner
                     </th>
                       <td id="tabledejeuner">
                         {ckeckPlanning(
@@ -270,7 +289,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tablemidi">
-                        <p><b>12h</b></p>Préparer et partager le repas
+                        <p><b>18h</b></p>Préparer le dîner et le porter au 92bis
                     </th>
                       <td id="tablemidi">
                         {ckeckPlanning(
@@ -317,7 +336,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tablesouper">
-                        <p><b>18h à 20h</b></p>Préparer le repas chez soi et le tenir
+                        <p><b>19h-21h</b></p>Préparer, servir et partager le dîner
                       à disposition
                     </th>
                       <td id="tablesouper">
@@ -365,7 +384,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tableapressouper">
-                        <p><b>20h à 22h</b></p>Récupérer le repas et le partager{" "}
+                        <p><b>18h30-21h</b></p>Réchauffer, servir et partager le dîner{" "}
                       </th>
                       <td id="tableapressouper">
                         {ckeckPlanning(
@@ -412,7 +431,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tablenuit">
-                        <p><b>22h à 8h</b></p>Passer la nuit
+                        <p><b>19h-8h</b></p>Partager le dîner et la nuit
                     </th>
                       <td id="tablenuit">
                         {ckeckPlanning(

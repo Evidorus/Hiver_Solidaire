@@ -54,7 +54,7 @@ export default function Profil() {
       title: 'Vous êtes bien déconnecté',
       content: (
         <div>
-          <p>Nous vous remercions pour votre participation</p>
+          <p>A très bientôt!</p>
         </div>
       ),
       onOk() { },

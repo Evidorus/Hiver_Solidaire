@@ -7,9 +7,10 @@ import { Modal } from 'antd';
 export default function Liste() {
   const [userListe, setUserListe] = useState([]);
 
-  // const du popup annulation activité : A voir : 1/insérer le nom activité + date -2/ modifier le fond lors de l'affichage
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
+  // const du popup confirmation : A voir : 1/insérer le nom activité + date -2/ modifier le fond lors de l'affichage
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Votre annulation a été enregistrée");
 
   useEffect(() => {
     fetch("http://localhost:8000/liste", {
@@ -45,16 +46,16 @@ export default function Liste() {
 
   // fonctions du popup confirmation
   const showModal = () => {
-    setIsModalVisible(true);
+    setVisible(true);
   };
 
   const handleOk = () => {
-    setIsModalVisible(false);
-    refreshPage()
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
+    setModalText();
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
   };
   // ------------------------------
 
@@ -78,12 +79,18 @@ export default function Liste() {
                     <button onClick={() => { annulation(response); showModal() }} className="btn btn-danger mx-auto">
                       Annulation
                 </button>
-                    {/*  popup  annulation*/}
-                    <Modal title="Confirmation " visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                      <p style={{ fontWeight: "bold", color: "red" }}>Veuillez confirmer votre annulation</p>
+                    {/*  confirmation */}
+                    <Modal
+                      title="Validation de l'annulation"
+                      visible={visible}
+                      footer={null}
+                      onOk={handleOk}
+                      confirmLoading={confirmLoading}
+                      onCancel={refreshPage}
+                    >
+                      <p>{modalText}</p>
                     </Modal>
                     {/*  ---------------- */}
-
                   </div>
                 </div>
               </>
