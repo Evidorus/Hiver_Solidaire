@@ -26,28 +26,6 @@ min-height : 100vh;
     color: #a1aab9
 }
 
-.number1 {
-    font-weight: 500
-}
-
-.followers {
-    font-size: 10px;
-    color: #a1aab9
-}
-
-.number2 {
-    font-weight: 500
-}
-
-.rating {
-    font-size: 10px;
-    color: #a1aab9
-}
-
-.number3 {
-    font-weight: 500;
-}
-
 .navbar {
     padding: 5px;
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
@@ -55,13 +33,10 @@ min-height : 100vh;
 }
 
 h1,
-h2,
-h3,
-#thcreneaux{
+h2{
     font-family: 'Leckerli One', cursive;
 }
 
-h3,
 #footerbar{
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
     border-radius : 5px;
@@ -113,6 +88,29 @@ h3,
     -webkit-transform: rotate(60deg);
     transform: rotate(60deg);
 }
+
+.hover-zoomin a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.hover-zoomin img {
+  width: 100%;
+  height: auto;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.hover-zoomin:hover img {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
 
 
 

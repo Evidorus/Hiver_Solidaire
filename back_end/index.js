@@ -11,8 +11,8 @@ const checkAuth = require('./middlewares/auth.middlewares')
 const path = require("path");
 
 
-const multer  = require('multer');
-const upload = multer({ dest:'public'});
+const multer = require('multer');
+const upload = multer({ dest: 'public' });
 const fs = require("fs");
 app.use(express.static('public'));
 
@@ -36,7 +36,7 @@ app.get('/planning', async (req, res) => {
     let page = 0;
     if (req.query.limit) {
         if (!parseInt(req.query.limit) || parseInt(req.query.limit) < 1) {
-            res.status(400).json({message: "Limit must be a positive number"});
+            res.status(400).json({ message: "Limit must be a positive number" });
         }
         limit = req.query.limit;
     }
@@ -109,19 +109,19 @@ app.get('/liste', checkAuth, async (req, res) => {
 })
 
 app.delete('/removeliste', checkAuth, async (req, res) => {
-    try{
+    try {
         console.log(req.body)
-        await PlanningModel.updateOne(req.body,{
+        await PlanningModel.updateOne(req.body, {
             bénévole: null
         })
         res.send(`Votre action du ${req.body.date} pour l'activité ${req.body.activité} a bien était supprimer`)
-    } catch(error){
+    } catch (error) {
         console.log(error)
     }
-}) 
+})
 
 
-app.post('/profilPicture',upload.single('image'), checkAuth, (req, res) => {
+app.post('/profilPicture', upload.single('image'), checkAuth, (req, res) => {
     console.log(req.token);
     const user = req.token;
     console.log(req.file);
@@ -129,6 +129,6 @@ app.post('/profilPicture',upload.single('image'), checkAuth, (req, res) => {
     user.image = `http://localhost:8000/${req.file.originalname}`;
     user.save();
     res.send(user.image);
-  });
+});
 
-  
+

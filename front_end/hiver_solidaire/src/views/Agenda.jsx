@@ -5,16 +5,25 @@ import { BrowserRouter, Switch } from "react-router-dom";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import moment from 'moment';
+import { Modal, Spin, Alert } from 'antd';
+
 
 function Agenda() {
   const [planning, setPlanning] = useState([]);
-  const [activité, setActivity] = useState();
+  // const [activité, setActivity] = useState();
   const [semaineStart, setSemaineStart] = useState([])
   const [semaineEnd, setSemaineEnd] = useState([])
   const [nom, setNom] = useState();
   const [prénom, setPrénom] = useState();
   const [numberOfPage, setNumberOfPage] = useState(0);
   const [page, setPage] = useState(0);
+  const [connected, setConnected] = useState(false)
+
+  // const du popup confirmation : A voir : 1/insérer le nom activité + date -2/ modifier le fond lors de l'affichage
+  const [visible, setVisible] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState("Vous retrouverez votre choix de créneaux dans votre page Profil");
+
 
 
   useEffect(() => {
@@ -29,12 +38,13 @@ function Agenda() {
       .then((response) => {
         console.log(response);
         setPlanning(response);
-        setActivity(response);
+        // setActivity(response);
         setNom(response);
         setPrénom(response);
         setNumberOfPage(Math.floor(response.count / 35));
         setSemaineStart(moment(response[0].date).format("DD MMM YYYY"))
         setSemaineEnd(moment(response[30].date).format("DD MMM YYYY"))
+        setConnected(localStorage.getItem("token"))
       });
   };
 
@@ -85,6 +95,21 @@ function Agenda() {
   };
 
 
+  // fonctions du popup confirmation
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setModalText();
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setVisible(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+  // ------------------------------
+
 
   const ckeckPlanning = (date, activité) => {
     const benevole = planning.find((element) => {
@@ -122,12 +147,24 @@ function Agenda() {
             style={{ margin: "10px", padding: "10px" }}
             onClick={() => {
               AddActivity(activity);
-              refreshPage();
+              showModal();
             }}
           >
             S'inscrire
         </button>
 
+          {/*  confirmation */}
+          <Modal
+            title="Validation de l'inscription"
+            visible={visible}
+            footer={null}
+            onOk={handleOk}
+            confirmLoading={confirmLoading}
+            onCancel={refreshPage}
+          >
+            <p>{modalText}</p>
+          </Modal>
+          {/*  ---------------- */}
         </div>
 
       );
@@ -137,7 +174,15 @@ function Agenda() {
     <BrowserRouter>
       <Styles>
         {planning.length === 0 ? (
-          <p>loading</p>
+          <Spin tip="Loading...">
+            <Alert
+              message="Le planning est réservé aux bénévoles inscrits. Pour y accéder, vous devez vous inscrire sur le site ou vous connecter"
+              description="Page en cours de téléchargement"
+              type="info"
+              style={{ textAlign: "center", padding: "20%" }}
+            />
+          </Spin>
+
         ) : (
           <div className="container liste">
             <div className="table-responsive">
@@ -195,7 +240,7 @@ function Agenda() {
                   <tbody>
                     <tr >
                       <th scope="row" id="tabledejeuner">
-                        <p><b>7h à 8h</b></p>Fournir et partager le petit déjeuner
+                        <p><b>7h à 8h</b></p>Préparer et partager le petit déjeuner
                     </th>
                       <td id="tabledejeuner">
                         {ckeckPlanning(
@@ -246,7 +291,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tablemidi">
-                        <p><b>12h</b></p>Préparer et partager le repas
+                        <p><b>18h</b></p>Préparer le dîner et le porter au 92bis
                     </th>
                       <td id="tablemidi">
                         {ckeckPlanning(
@@ -293,7 +338,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tablesouper">
-                        <p><b>18h à 20h</b></p>Préparer le repas chez soi et le tenir
+                        <p><b>19h-21h</b></p>Préparer, servir et partager le dîner
                       à disposition
                     </th>
                       <td id="tablesouper">
@@ -341,7 +386,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tableapressouper">
-                        <p><b>20h à 22h</b></p>Récupérer le repas et le partager{" "}
+                        <p><b>18h30-21h</b></p>Réchauffer, servir et partager le dîner{" "}
                       </th>
                       <td id="tableapressouper">
                         {ckeckPlanning(
@@ -388,7 +433,7 @@ function Agenda() {
                     </tr>
                     <tr>
                       <th scope="row" id="tablenuit">
-                        <p><b>22h à 8h</b></p>Passer la nuit
+                        <p><b>19h-8h</b></p>Partager le dîner et la nuit
                     </th>
                       <td id="tablenuit">
                         {ckeckPlanning(
