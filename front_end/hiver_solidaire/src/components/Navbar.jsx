@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import Agenda from '../views/Agenda'
 import Home from '../views/Home';
@@ -9,8 +9,14 @@ import Contact from '../views/Contact'
 import Welcome from '../views/Welcome';
 
 
-
 function Navbar() {
+    const [connected, setConnected] = useState("")
+    console.log(connected)
+    
+
+    useEffect(() => {
+        setConnected(localStorage.getItem("token"))
+    })
 
     return (
         <BrowserRouter>
@@ -27,19 +33,19 @@ function Navbar() {
 
                         <ul className="navbar-nav" >
                             <li className="nav-item" >
-                                <Link to="/signup" className="nav-link " >Inscription</Link>
+                                <Link to="/signup" className={`nav-link ${connected ? "invisible" : ""}`} >Inscription</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link " >Connection</Link>
+                                <Link to="/login" className={`nav-link ${connected ? "invisible" : ""}`} >Connection</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/profile" className="nav-link " >Profil</Link>
+                                <Link to="/profile" className={`nav-link ${!connected ? "invisible" : ""}`} disabled={!connected} >Profil</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/agenda" className="nav-link " >Agenda</Link>
+                                <Link to="/agenda" className={`nav-link ${!connected ? "invisible" : ""}`} disabled={!connected} >Agenda</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/contact" className="nav-link " >Contact</Link>
+                                <Link to="/contact" className={`nav-link ${!connected ? "invisible" : ""}`} disabled={!connected} >Contact</Link>
                             </li>
                         </ul>
                     </div>
