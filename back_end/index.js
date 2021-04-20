@@ -90,7 +90,7 @@ app.get('/profil', checkAuth, async (req, res) => {
         const user = await UserModel.findOne({
             _id: tokenUser._id
         })
-        res.json(user)
+        res.json(user).status(200)
     } catch (error) {
         console.log(error)
     }

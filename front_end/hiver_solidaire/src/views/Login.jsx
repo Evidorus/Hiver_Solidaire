@@ -37,10 +37,6 @@ export default function Login() {
     }
   };
 
-  const refreshPage = () => {
-    window.location.reload(false);
-  };
-
   return (
 
     <Styles>
