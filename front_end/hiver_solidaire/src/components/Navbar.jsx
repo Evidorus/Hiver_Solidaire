@@ -10,12 +10,16 @@ import Welcome from '../views/Welcome';
 
 
 function Navbar() {
-    const [connected, setConnected] = useState("")
+    const [connected, setConnected] = useState(false)
     console.log(connected)
     
 
     useEffect(() => {
-        setConnected(localStorage.getItem("token"))
+        const token = localStorage.getItem("token")
+        if (token) {
+            setConnected(true)
+            console.log(connected)
+        }
     })
 
     return (
