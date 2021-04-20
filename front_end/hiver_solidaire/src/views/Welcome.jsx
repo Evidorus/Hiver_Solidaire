@@ -49,9 +49,9 @@ export default function Welcome() {
                             <div className="col">
                                 <h6 style={{ textAlign: 'center', marginTop: "5%", padding: "2%" }} id="h2Home"> Pour plus de renseignements, vous pouvez vous adresser à :</h6>
                                 <span style={{ fontSize: '1em', textAlign: "center", fontWeight: "bold" }}>
-                                    <p>Jean Sutter (Responsable)   <i class="fas fa-phone-square-alt fa-lg" style={{ color: '#37628d' }}></i>  06 03 99 88 35   <i class="fas fa-envelope fa-lg" style={{ color: '#37628d' }}></i>  jean.sutter@orange.fr
+                                    <p>Jean Sutter (Responsable)   <i class="fas fa-phone-square-alt fa-lg" style={{ color: '#37628d' }}></i>  06 03 99 88 35   <i className="fas fa-envelope fa-lg" style={{ color: '#37628d' }}></i>  jean.sutter@orange.fr
                                     </p>
-                                    <p>Christian Homolle   <i class="fas fa-phone-square-alt fa-lg" style={{ color: '#37628d' }}></i>  06 07 76 21   <i class="fas fa-envelope fa-lg" style={{ color: '#37628d' }}></i>  christianhomolle@yahoo.fr
+                                    <p>Christian Homolle   <i class="fas fa-phone-square-alt fa-lg" style={{ color: '#37628d' }}></i>  06 07 76 21   <i className="fas fa-envelope fa-lg" style={{ color: '#37628d' }}></i>  christianhomolle@yahoo.fr
                                     </p>
                                 </span>
                             </div>

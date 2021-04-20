@@ -71,7 +71,7 @@ function Home() {
                                     <br></br>
                                 Mais ce relatif confort matériel ne trouve son sens que si nous, les Bénévoles , leur apportons notre chaleur fraternelle et, au final, notre amitié pour leur permettre de vivre 10 semaines dans une « ambiance familiale ».
                                 <br></br><br></br>
-                                    <Link to="/welcome" className="btn btn-warning btn-sm px-3" >En savoir +</Link>
+                                    <Link to="/welcome" className="btn btn-warning btn-sm px-3">En savoir +</Link>
                                 </div>
                             </p>
                         </div>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
 import Agenda from '../views/Agenda'
 import Home from '../views/Home';
@@ -12,7 +12,7 @@ import Welcome from '../views/Welcome';
 function Navbar() {
     const [connected, setConnected] = useState("")
     console.log(connected)
-    
+
 
     useEffect(() => {
         setConnected(localStorage.getItem("token"))
