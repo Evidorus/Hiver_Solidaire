@@ -16,7 +16,7 @@ h2{
 form{
     display : flex;
     flex-direction : column;
-    width : 70%;
+    width : 50%;
     height : auto;
     margin : 10px auto;
     // border : 1px solid white;

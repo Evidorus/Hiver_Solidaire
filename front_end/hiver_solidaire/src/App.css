@@ -32,10 +32,10 @@ min-height : 100vh;
     font-size: 1.3em;
 }
 
-h1,
+/* h1,
 h2{
     font-family: 'Leckerli One', cursive;
-}
+} */
 
 #footerbar{
     background: linear-gradient(0.45turn, #192a56, #40739e, #f69d3c);
